@@ -1,11 +1,11 @@
 class StubAPI {
     constructor() {
-        this.favoriteMovies = [];
+        this.favoriteMovies = []
         this.reviews = []
     }
 
     add(movie) {
-        this.favoriteMovies.push(movie);
+        this.favoriteMovies.push(movie)
         console.log(this.favoriteMovies)
     }
 
@@ -15,6 +15,16 @@ class StubAPI {
 
     addReview(review) {
         this.reviews.push(review)
+    }
+    
+    getReviews(movieId) {
+        var customReviews = []
+        this.reviews.forEach(function(entry) {
+            if (entry.movieId === movieId){
+                customReviews.push(entry)
+            }
+        });
+        return customReviews
     }
 
 }

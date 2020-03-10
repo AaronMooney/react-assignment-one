@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getMovieReviews } from "../../api/tmdb-api";
 import { excerpt } from "../../util";
+import StubAPI from "../../api/stubAPI"
 
 export default ({ movie }) => {
   const [reviews, setReviews] = useState([]);
@@ -43,6 +44,28 @@ export default ({ movie }) => {
               </tr>
             );
           })}
+          {StubAPI.getReviews(movie.id).map((r, index) => {
+          return (
+            <tr key={index}>
+              <td>{r.author}</td>
+              <td>{excerpt(r.content)}</td>
+              <td>
+                  {" "}
+                  <Link
+                    to={{
+                      pathname: `/reviews/${r.id}`,
+                      state: {
+                        review: r,
+                        movie: movie
+                      }
+                    }}
+                  >
+                    Full Review
+                  </Link>
+                </td>
+              </tr>
+          );
+        })}
       </tbody>
     </table>
   );

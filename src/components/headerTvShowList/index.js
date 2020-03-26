@@ -5,13 +5,13 @@ const headerCss = {
   textAlign:"center"
 };
 
-const Header = ({ numMovies }) => {
+const Header = ({ numTvShows }) => {
   return (
     <div className="row">
       <div style={headerCss}>
         <h2>
-          All Movies{" "}
-          <span className="badge badge-pill badge-success">{numMovies}</span>
+          All Tv Shows{" "}
+          <span className="badge badge-pill badge-success">{numTvShows}</span>
         </h2>
       </div>
     </div>

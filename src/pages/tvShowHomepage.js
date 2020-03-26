@@ -10,7 +10,7 @@ const TvShowListPage = () => {
       <PageTemplate 
         title='All Tv Shows'
         tvShows={context.tvShows}
-        // action={movie => <AddToFavoritesButton movie={movie} /> }
+        action={ tvShow => console.log("placeholder") }
       />
   );
 };

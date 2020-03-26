@@ -12,7 +12,7 @@ const TvShow = ({tvShow, action}) => {
       <Link to={`/tvShows/${tvShow.id}`}>
         <img
           className="card-img-tag center "
-          alt={tvShow.title}
+          alt={tvShow.name}
           src={
             tvShow.poster_path
               ? `https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`
@@ -32,7 +32,7 @@ const TvShow = ({tvShow, action}) => {
           </p>
         </div>
         <div className="card-footer">
-            {/* {action(tvShow)} */}
+            {action(tvShow)}
         </div>
       </div>
     </div>

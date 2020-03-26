@@ -21,7 +21,7 @@ const TvShow = ({tvShow, action}) => {
         />
         </Link>
         <div className="card-body">
-          <h4 className="card-title ">{tvShow.title}</h4>
+          <h4 className="card-title ">{tvShow.name}</h4>
           <p>
             <FontAwesomeIcon icon={["fas", "calendar"]} />
             <span> {tvShow.first_air_date}</span>

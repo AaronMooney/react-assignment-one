@@ -1,7 +1,7 @@
 # Movie App
 
 An Extension of the Movie App implemented in labs.
-Current Progress:
+Current Progress (under dev branch) :
 
 - Lab work completed
 - Added saving for new user reviews and showed them in list of reviews for selected movies.

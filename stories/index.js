@@ -7,12 +7,13 @@ import MoviesHeader from "../src/components/headerMovieList";
 import MovieList from "../src/components/movieList";
 import MovieDetails from "../src/components/movieDetails";
 import MovieHeader from "../src/components/headerMovie";
-import AddFavoriteButton from "../src/components/buttons/addToFavorites";
+import MovieAddFavoritesButton from "../src/components/buttons/movieAddToFavorites";
 import { MemoryRouter } from "react-router";
 import GenresContextProvider from "../src/contexts/genresContext";
 import { action } from "@storybook/addon-actions";
+import PersonCard from "../src/components/personCard";
 
-const sample = {
+const sampleMovie = {
   adult: false,
   backdrop_path: "/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg",
   belongs_to_collection: {
@@ -93,18 +94,88 @@ const sample = {
   vote_count: 9692
 };
 
+const samplePerson = {
+  popularity: 271.416,
+  known_for_department: "Acting",
+  gender: 2,
+  id: 1910848,
+  profile_path: "/1fmjgN8EvDj1TiEJk2Zs4y0T40O.jpg",
+  adult: false,
+  known_for: [
+      {
+          original_name: "萌妻食神",
+          vote_count: 6,
+          poster_path: "/xb40Li6ff1BK0pVOxV4lutssCrR.jpg",
+          media_type: "tv",
+          name: "Cinderella Chef",
+          vote_average: 9.2,
+          id: 79574,
+          first_air_date: "2018-04-23",
+          original_language: "zh",
+          genre_ids: [
+              35,
+              10765,
+              10766
+          ],
+          backdrop_path: "/rnzmWKEiWPb8GC1mlqQojj8ccWj.jpg",
+          overview: "",
+          origin_country: []
+      },
+      {
+          original_name: "外星女生柴小七",
+          vote_count: 5,
+          poster_path: "/5e2owvs9TWVsuIacTFxJGPp6KVW.jpg",
+          media_type: "tv",
+          name: "My Girlfriend is an Alien",
+          vote_average: 7.8,
+          id: 92779,
+          first_air_date: "2019-08-19",
+          original_language: "zh",
+          genre_ids: [
+              35,
+              10765
+          ],
+          backdrop_path: "/kCl7piWv3pypgYfyLFi7ZgFGlYV.jpg",
+          overview: "The alien girl Chai Xiaoqi tells the story of Fang Xiaoqi, the overbearing president of the alien girl who died from the \"Cape Town Planet\", who was suffering from the \"rainy weather heterosexual amnesia\". A high-energy hilarious and romantic cross-star love story. The female host Chai Xiaoqi is not only an alien, but also a true-handed witch. Once she inhales the hormones emitted by the males in the earth, she will fall into the \"flowery state\" and suffer from various diseases. The fun and ridiculously ridiculous romance will restore the singularity of the girl in the perfection of the girl. In order to survive on the human earth, Chai Xiaoqi will use his various super powers to solve one accident after another, like a roller coaster. The ups and downs will make the audience hooked. The male lord is cold and is an alternative overbearing president. When it rains, he will forget the opposite sex that appears around him. For this reason, he and the female host will launch various \"fighting and fighting\" laughter dramas. The experience of high sweetness and romance is expected to be Strongly slammed the girl's heart when it was broadcast.",
+          origin_country: [
+              "CN"
+          ]
+      },
+      {
+          original_name: "Devil Lover เผลอใจ..ให้นายปีศาจ",
+          id: 74640,
+          origin_country: [
+              "TH"
+          ],
+          name: "Devil Lover เผลอใจ..ให้นายปีศาจ",
+          backdrop_path: "/iRYOwW6DRIRwDYVmRWA8nbfaV2c.jpg",
+          original_language: "th",
+          first_air_date: "2015-10-07",
+          genre_ids: [
+              35
+          ],
+          vote_count: 0,
+          media_type: "tv",
+          vote_average: 0,
+          overview: "",
+          poster_path: "/moThN7iERydEHI2RbfrmhCp69R4.jpg"
+      }
+  ],
+  name: "Thassapak Hsu"
+};
+
 storiesOf("Home Page/MovieCard", module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
   ))
   .add("default", () => (
     <MovieCard
-      movie={sample}
+      movie={sampleMovie}
       action={movie => <button className="btn w-100 btn-primary">Test</button>}
     />
   ))
   .add("exception", () => {
-    const sampleNoPoster = { ...sample, poster_path: undefined };
+    const sampleNoPoster = { ...sampleMovie, poster_path: undefined };
     return (
       <MovieCard
         movie={sampleNoPoster}
@@ -132,7 +203,7 @@ storiesOf("Home Page/MovieList", module)
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
   ))
   .add("default", () => {
-    const movies = [sample, sample, sample, sample, sample];
+    const movies = [sampleMovie, sampleMovie, sampleMovie, sampleMovie, sampleMovie];
     return (
       <MovieList
         movies={movies}
@@ -144,11 +215,30 @@ storiesOf("Home Page/MovieList", module)
   });
 
 storiesOf("Movie Details Page/MovieDetails", module).add("default", () => (
-  <MovieDetails movie={sample} />
+  <MovieDetails movie={sampleMovie} />
 ));
 
 storiesOf("Movie Details Page/MovieHeader", module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
   ))
-  .add("default", () => <MovieHeader movie={sample} />);
+  .add("default", () => <MovieHeader movie={sampleMovie} />);
+
+
+storiesOf("Home Page/PersonCard", module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+  ))
+  .add("default", () => (
+    <PersonCard
+      person={samplePerson}
+    />
+  ))
+  .add("exception", () => {
+    const sampleNoPoster = { ...samplePerson, profile_path: undefined };
+    return (
+      <PersonCard
+        person={sampleNoPoster}
+      />
+    );
+  });

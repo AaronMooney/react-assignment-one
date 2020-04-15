@@ -46,10 +46,17 @@ export const getMovieReviews = id => {
 };
 
 export const getTvShowReviews = id => {
-  console.log("fetching review for tv show")
   return fetch(
     `https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${process.env.REACT_APP_TMDB_KEY}`
   )
     .then(res => res.json())
     .then(json => json.results);
 };
+
+export const getPopularPeople = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_KEY}`
+  )
+    .then(res => res.json())
+    .then(json => json.results);
+}

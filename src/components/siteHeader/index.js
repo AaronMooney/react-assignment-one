@@ -18,6 +18,11 @@ const SiteHeader = () => {
           Tv Shows
         </Link>
       </nav>
+      <nav className="navbar-brand text-white">
+        <Link className=" text-white" to="/people">
+          People
+        </Link>
+      </nav>
       <FontAwesomeIcon
         className="navbar-text text-light"
         icon={["fas", "video"]}

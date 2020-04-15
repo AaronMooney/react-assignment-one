@@ -16,16 +16,14 @@ const FilterControls = props => {
     handleChange(e, "genre", e.target.value);
   };
 
+  const listFiltering = <span><span>List Filtering:</span><input type="text" placeholder="Title Search" onChange={handleTextChange}/></span>;
+
+  if (props.numMovies > 0){
   return (
     <div className="row bg-warning">
       <div className="col-md-12">
         <h4>
-          <span>List Filtering:</span>
-          <input
-            type="text"
-            placeholder="Title Search"
-            onChange={handleTextChange}
-          />
+          {listFiltering}
           <span>Genre:</span>
           <select id="genre" onChange={handleGenreChange}>
             {context.genres.map(genre => {
@@ -40,6 +38,18 @@ const FilterControls = props => {
       </div>
     </div>
   );
+  } else {
+    return(
+      <div className="row bg-warning">
+        <div className="col-md-12">
+          <h4>
+            {listFiltering}
+          </h4>
+        </div>
+      </div>
+    )
+  }
+
 };
 
 export default FilterControls;

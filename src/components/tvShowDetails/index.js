@@ -20,7 +20,22 @@ export default ({ tvShow }) => {
           {tvShow.last_air_date}
         </li>
       </ul>
-
+      <ul className="list-group list-group-horizontal">
+        <li key="noel" className="list-group-item list-group-item-dark">
+          Number of Episodes
+        </li>
+        <li key="noe" className="list-group-item ">
+          {tvShow.number_of_episodes}
+        </li>
+      </ul>
+      <ul className="list-group list-group-horizontal">
+        <li key="nosl" className="list-group-item list-group-item-dark">
+          Number of Seasons
+        </li>
+        <li key="nos" className="list-group-item ">
+          {tvShow.number_of_seasons}
+        </li>
+      </ul>
       <ul className="list-group list-group-horizontal">
         <li key="gh" className="list-group-item list-group-item-dark">
           Genres
@@ -42,8 +57,8 @@ export default ({ tvShow }) => {
         ))}
       </ul>
       <ul className="list-group list-group-horizontal">
-        <li key="pch" className="list-group-item list-group-item-dark">
-          Netorks
+        <li key="nw" className="list-group-item list-group-item-dark">
+          Networks
         </li>
         {tvShow.networks.map(n => (
           <li key={n.name} className="list-group-item">

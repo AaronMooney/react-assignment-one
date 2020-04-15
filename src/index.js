@@ -5,8 +5,10 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import HomePage from "./pages/homepage";
 import TvShowsHomePage from "./pages/tvShowHomepage"
 import MoviePage from './pages/movieDetailsPage';
+import TvShowPage from './pages/tvShowDetailsPage';
 import FavoriteMoviesPage from './pages/favoriteMoviesPage';
 import MovieReviewPage from './pages/movieReviewPage';
+import TvShowReviewPage from './pages/tvShowReviewPage';
 import "./globals/fontawesome";
 import SiteHeader from './components/siteHeader';
 import MoviesContextProvider from "./contexts/moviesContext";
@@ -57,9 +59,9 @@ const App = () => {
           <GenresContextProvider>
               <Switch>
                 {/* <Route exact path="/reviews/form" component={AddMovieReviewPage} /> */}
-                {/* <Route path="/reviews/:id" component={MovieReviewPage} /> */}
+                <Route path="/reviews/:id" component={TvShowReviewPage} />
                 {/* <Route exact path="/movies/favorites" component={FavoriteMoviesPage} /> */}
-                {/* <Route path="/movies/:id" component={MoviePage} /> */}
+                <Route path="/tvShows/:id" component={TvShowPage} />
                 <Route path="/" component={TvShowsHomePage} />
                 <Redirect from="*" to="/" />
               </Switch>

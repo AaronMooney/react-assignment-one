@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Route } from "react-router-dom";
 import TvShowDetails from "../components/tvShowDetails";
 import PageTemplate from "../components/templateTvShowPage";
-// import MovieReviews from "../components/movieReviews";
+import TvShowReviews from "../components/tvShowReviews";
 import useTvShow from "../hooks/useTvShow";
 
 const TvShowPage = props => {
@@ -34,10 +34,10 @@ const TvShowPage = props => {
             )}
           </div>
         </div>
-        {/* <Route
-          path={`/movies/:id/reviews`}
-          render={props => <MovieReviews movie={movie} {...props} />}
-        /> */}
+        <Route
+          path={`/tvShows/:id/reviews`}
+          render={props => <TvShowReviews tvShow={tvShow} {...props} />}
+        />
       </>
     ) : (
       <p>Waiting for contact details</p>

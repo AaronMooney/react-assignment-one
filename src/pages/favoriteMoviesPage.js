@@ -1,7 +1,7 @@
 import React from "react";
 import StubAPI from "../api/stubAPI";
 import PageTemplate from "../components/templateMovieListPage";
-import AddReviewButton from '../components/buttons/addReview'
+import AddReviewButton from '../components/buttons/addMovieReview'
 
 const FavoriteMoviesPage = props => {
 

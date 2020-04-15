@@ -3,11 +3,19 @@ import "./reviewForm.css";
 import useForm from "react-hook-form";
 import stubAPI from "../../api/stubAPI";
 
-const ReviewForm = ({ movie }) => {
+const ReviewForm = ({ movie, tvShow }) => {
   const { register, handleSubmit, errors, reset } = useForm();
   const onSubmit = data => {
-    data.movieId = movie.id;
-    stubAPI.addMovieReview(data);
+
+    if (movie){
+      data.movieId = movie.id;
+      stubAPI.addMovieReview(data);
+    }
+    if (tvShow){
+      data.tvShowId = tvShow.id
+      stubAPI.addTvShowReview(data);
+    }
+    
     console.log(data);
     reset({
       author: "",

@@ -7,6 +7,7 @@ import TvShowsHomePage from "./pages/tvShowHomepage";
 import PeopleHomePage from "./pages/peopleHomePage";
 import MoviePage from './pages/movieDetailsPage';
 import TvShowPage from './pages/tvShowDetailsPage';
+import PersonPage from './pages/personDetailsPage';
 import FavoriteMoviesPage from './pages/favoriteMoviesPage';
 import FavoriteTvShowPage from './pages/favoriteTvShowPage';
 import MovieReviewPage from './pages/movieReviewPage';
@@ -39,6 +40,7 @@ const App = () => {
                 <Route exact path="/tvShows/favorites" component={FavoriteTvShowPage} />
                 <Route path="/movies/:id" component={MoviePage} />
                 <Route path="/tvShows/:id" component={TvShowPage} />
+                <Route path="/people/:id" component={PersonPage} />
                 <Route path="/tvShows" component={TvShowsHomePage} />
                 <Route path="/people" component={PeopleHomePage} />
                 <Route path="/" component={HomePage} />

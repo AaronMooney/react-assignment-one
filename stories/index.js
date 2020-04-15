@@ -12,6 +12,7 @@ import { MemoryRouter } from "react-router";
 import GenresContextProvider from "../src/contexts/genresContext";
 import { action } from "@storybook/addon-actions";
 import PersonCard from "../src/components/personCard";
+import PersonDetails from "../src/components/personDetails"
 
 const sampleMovie = {
   adult: false,
@@ -164,6 +165,64 @@ const samplePerson = {
   name: "Thassapak Hsu"
 };
 
+const samplePerson2 = {
+  birthday: null,
+  known_for_department: "Acting",
+  deathday: null,
+  id: 2200292,
+  name: "Laura Sohn",
+  also_known_as: [],
+  gender: 1,
+  biography: "Laura Sohn is an American actress. She is a graduate of Rutgers University.",
+  popularity: 89.495,
+  place_of_birth: "New Jersey, USA",
+  profile_path: "/iABra2b6kO0JfHdBnVMROYtkuuM.jpg",
+  adult: false,
+  imdb_id: "nm8089556",
+  homepage: "http://www.rutgersactorpresentation.com/laura-sohn"
+}
+
+const sampleCredits = {
+  cast: [
+      {
+          id: 81114,
+          character: "Mary Yoon",
+          episode_count: 1,
+          overview: "A self-proclaimed \"pesky atheist\" is encouraged to help strangers by someone claiming to be God who friends him on Facebook.",
+          origin_country: [
+              "US"
+          ],
+          original_name: "God Friended Me",
+          genre_ids: [
+              18,
+              9648,
+              10751
+          ],
+          name: "God Friended Me",
+      },
+      {
+          id: 46952,
+          character: "Agent Alina Park",
+          episode_count: 5,
+          overview: "Raymond \"Red\" Reddington, one of the FBI's most wanted fugitives, surrenders in person at FBI Headquarters in Washington, D.C. He claims that he and the FBI have the same interests: bringing down dangerous criminals and terrorists. In the last two decades, he's made a list of criminals and terrorists that matter the most but the FBI cannot find because it does not know they exist. Reddington calls this \"The Blacklist\". Reddington will co-operate, but insists that he will speak only to Elizabeth Keen, a rookie FBI profiler.",
+          origin_country: [
+              "US"
+          ],
+          original_name: "The Blacklist",
+          "genre_ids": [
+              80,
+              18,
+              9648
+          ],
+          name: "The Blacklist",
+      }
+  ],
+  crew: [],
+  id: 2200292
+};
+
+
+
 storiesOf("Home Page/MovieCard", module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
@@ -242,3 +301,7 @@ storiesOf("Home Page/PersonCard", module)
       />
     );
   });
+
+  storiesOf("Person Details Page/PersonDetails", module).add("default", () => (
+    <PersonDetails person={samplePerson2} credits={sampleCredits} />
+  ));

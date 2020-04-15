@@ -7,7 +7,7 @@ const FavoriteMoviesPage = props => {
 
   return (
     <PageTemplate
-      movies={StubAPI.getAll()}
+      movies={StubAPI.getAllMovies()}
       title={"Favorite Movies"}
       action={movie => <AddReviewButton movie={movie} />}
     />

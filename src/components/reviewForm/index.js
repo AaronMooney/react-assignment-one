@@ -7,7 +7,7 @@ const ReviewForm = ({ movie }) => {
   const { register, handleSubmit, errors, reset } = useForm();
   const onSubmit = data => {
     data.movieId = movie.id;
-    stubAPI.addReview(data);
+    stubAPI.addMovieReview(data);
     console.log(data);
     reset({
       author: "",

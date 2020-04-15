@@ -10,7 +10,7 @@ const TvShowsContextProvider = props => {
   const addToFavorites = tvShowId => {
     setTvShows(tvShows => {
       const index = tvShows.map(m => m.id).indexOf(tvShowId);
-      StubAPI.add(tvShows[index]);
+      StubAPI.addTvShowToFavorites(tvShows[index]);
       tvShows.splice(index, 1);
       return [...tvShows];
     });

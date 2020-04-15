@@ -1,26 +1,50 @@
 class StubAPI {
     constructor() {
         this.favoriteMovies = []
-        this.reviews = []
+        this.favoriteTvShows = []
+        this.movieReviews = []
+        this.tvShowReviews = []
     }
 
-    add(movie) {
+    addMovieToFavorites(movie) {
         this.favoriteMovies.push(movie)
         console.log(this.favoriteMovies)
     }
 
-    getAll() {
-        return this.favoriteMovies;
+    addTvShowToFavorites(tvShow) {
+        this.favoriteTvShows.push(tvShow)
     }
 
-    addReview(review) {
-        this.reviews.push(review)
+    getAllMovies() {
+        return this.favoriteMovies
+    }
+
+    getAllTvShows(){
+        return this.favoriteTvShows
+    }
+
+    addMovieReview(review) {
+        this.movieReviews.push(review)
+    }
+
+    addTvShowReview(review){
+        this.tvShowReviews.push(review)
     }
     
-    getReviews(movieId) {
+    getMovieReviews(movieId) {
         var customReviews = []
-        this.reviews.forEach(function(entry) {
+        this.movieReviews.forEach(function(entry) {
             if (entry.movieId === movieId){
+                customReviews.push(entry)
+            }
+        });
+        return customReviews
+    }
+
+    getTvShowReviews(tvShowId) {
+        var customReviews = []
+        this.tvShowReviews.forEach(function(entry) {
+            if (entry.tvShowId === tvShowId){
                 customReviews.push(entry)
             }
         });

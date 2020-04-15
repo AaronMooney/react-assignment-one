@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import {MoviesContext} from "../../contexts/moviesContext";
 
-const AddToFavoriteButton = ({ movie }) => {
+const MovieAddToFavoritesButton = ({ movie }) => {
   const context = useContext(MoviesContext);
 
   const handleAddToFavorite = e => {
@@ -19,4 +19,4 @@ const AddToFavoriteButton = ({ movie }) => {
   );
 };
 
-export default AddToFavoriteButton;
+export default MovieAddToFavoritesButton;

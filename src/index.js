@@ -7,6 +7,7 @@ import TvShowsHomePage from "./pages/tvShowHomepage"
 import MoviePage from './pages/movieDetailsPage';
 import TvShowPage from './pages/tvShowDetailsPage';
 import FavoriteMoviesPage from './pages/favoriteMoviesPage';
+import FavoriteTvShowPage from './pages/favoriteTvShowPage';
 import MovieReviewPage from './pages/movieReviewPage';
 import TvShowReviewPage from './pages/tvShowReviewPage';
 import "./globals/fontawesome";
@@ -15,63 +16,32 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import TvShowsContextProvider from "./contexts/tvShowsContext"
 import GenresContextProvider from "./contexts/genresContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
-import { Tabs } from "@yazanaabed/react-tabs";
-
-
-const tabStyles = {
-  fontFamily: "sans-serif",
-  textAlign: "center"
-};
 
 const App = () => {
   return (
     <BrowserRouter>
     <div className="jumbotron">
       <SiteHeader/>
-
-      <div style={tabStyles}>
-    <Tabs
-      activeTab={{
-        id: "tab1"
-      }}
-    >
-      <Tabs.Tab id="tab1" title="Movies">
-    
       <div className="container-fluid">
           <MoviesContextProvider>
+          <TvShowsContextProvider>
           <GenresContextProvider>
               <Switch>
                 <Route exact path="/reviews/form" component={AddMovieReviewPage} />
-                <Route path="/reviews/:id" component={MovieReviewPage} />
+                <Route path="/movies/reviews/:id" component={MovieReviewPage} />
+                <Route path="/tvShows/reviews/:id" component={TvShowReviewPage} />
                 <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
+                <Route exact path="/tvShows/favorites" component={FavoriteTvShowPage} />
                 <Route path="/movies/:id" component={MoviePage} />
+                <Route path="/tvShows/:id" component={TvShowPage} />
+                <Route path="/tvShows" component={TvShowsHomePage} />
                 <Route path="/" component={HomePage} />
                 <Redirect from="*" to="/" />
               </Switch>
             </GenresContextProvider>
+            </TvShowsContextProvider>
           </MoviesContextProvider>
         </div>
-        </Tabs.Tab>
-        <Tabs.Tab id="tab2" title="TV Series">
-        <div className="container-fluid">
-        <div className="container-fluid">
-          <TvShowsContextProvider>
-          <GenresContextProvider>
-              <Switch>
-                {/* <Route exact path="/reviews/form" component={AddMovieReviewPage} /> */}
-                <Route path="/reviews/:id" component={TvShowReviewPage} />
-                {/* <Route exact path="/movies/favorites" component={FavoriteMoviesPage} /> */}
-                <Route path="/tvShows/:id" component={TvShowPage} />
-                <Route path="/" component={TvShowsHomePage} />
-                <Redirect from="*" to="/" />
-              </Switch>
-            </GenresContextProvider>
-          </TvShowsContextProvider>
-        </div>
-        </div>
-      </Tabs.Tab>
-        </Tabs>
-  </div>
       </div>
   </BrowserRouter>
   );

@@ -31,7 +31,7 @@ export default ({ movie }) => {
                   {" "}
                   <Link
                     to={{
-                      pathname: `/reviews/${r.id}`,
+                      pathname: `/movies/reviews/${r.id}`,
                       state: {
                         review: r,
                         movie: movie
@@ -44,7 +44,7 @@ export default ({ movie }) => {
               </tr>
             );
           })}
-          {StubAPI.getReviews(movie.id).map((r, index) => {
+          {StubAPI.getMovieReviews(movie.id).map((r, index) => {
           return (
             <tr key={index}>
               <td>{r.author}</td>
@@ -53,7 +53,7 @@ export default ({ movie }) => {
                   {" "}
                   <Link
                     to={{
-                      pathname: `/reviews/${r.id}`,
+                      pathname: `/movies/reviews/${r.id}`,
                       state: {
                         review: r,
                         movie: movie

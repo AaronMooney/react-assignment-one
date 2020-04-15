@@ -31,7 +31,7 @@ export default ({ tvShow }) => {
                   {" "}
                   <Link
                     to={{
-                      pathname: `/reviews/${r.id}`,
+                      pathname: `/tvShows/reviews/${r.id}`,
                       state: {
                         review: r,
                         tvShow: tvShow
@@ -44,7 +44,7 @@ export default ({ tvShow }) => {
               </tr>
             );
           })}
-          {StubAPI.getReviews(tvShow.id).map((r, index) => {
+          {StubAPI.getTvShowReviews(tvShow.id).map((r, index) => {
           return (
             <tr key={index}>
               <td>{r.author}</td>
@@ -53,7 +53,7 @@ export default ({ tvShow }) => {
                   {" "}
                   <Link
                     to={{
-                      pathname: `/reviews/${r.id}`,
+                      pathname: `/tvShows/reviews/${r.id}`,
                       state: {
                         review: r,
                         tvShow: tvShow

@@ -10,7 +10,7 @@ const MoviesContextProvider = props => {
   const addToFavorites = movieId => {
     setMovies(movies => {
       const index = movies.map(m => m.id).indexOf(movieId);
-      StubAPI.add(movies[index]);
+      StubAPI.addMovieToFavorites(movies[index]);
       movies.splice(index, 1);
       return [...movies];
     });

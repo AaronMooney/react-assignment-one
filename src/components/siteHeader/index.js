@@ -10,7 +10,12 @@ const SiteHeader = () => {
     <nav className="navbar  navbar-light fixed-top  bg-dark ">
       <nav className="navbar-brand text-white">
         <Link className=" text-white" to="/">
-          TMDB Client
+          Movies
+        </Link>
+      </nav>
+      <nav className="navbar-brand text-white">
+        <Link className=" text-white" to="/tvShows">
+          Tv Shows
         </Link>
       </nav>
       <FontAwesomeIcon
@@ -35,7 +40,12 @@ const SiteHeader = () => {
           </li>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/movies/favorites">
-              Favorites
+              Favorite Movies
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/tvShows/favorites">
+              Favorite TV
             </Link>
           </li>
         </ul>

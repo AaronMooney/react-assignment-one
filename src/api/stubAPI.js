@@ -7,8 +7,10 @@ class StubAPI {
     }
 
     addMovieToFavorites(movie) {
-        this.favoriteMovies.push(movie)
-        console.log(this.favoriteMovies)
+        var existing = this.favoriteMovies.filter(movieId => movieId = movie.id)
+        if (!existing.length > 0){
+            this.favoriteMovies.push(movie)
+        }
     }
 
     addTvShowToFavorites(tvShow) {

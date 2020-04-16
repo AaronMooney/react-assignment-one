@@ -21,11 +21,18 @@ const MovieListPage = () => {
             action={(movie) => <MovieAddToFavoritesButton movie={movie} type="movies" />}
           />
         </Tabs.Tab>
-        <Tabs.Tab id="tab12" title="Trending">
+        <Tabs.Tab id="tab2" title="Trending">
           <PageTemplate
-            title="All Movies"
+            title="Trending This Week"
             movies={context.trending}
             action={(movie) => <MovieAddToFavoritesButton movie={movie} type="trending"/>}
+          />
+        </Tabs.Tab>
+        <Tabs.Tab id="tab3" title="Upcoming">
+          <PageTemplate
+            title="Upcoming Movies"
+            movies={context.upcoming}
+            action={(movie) => console.log("")}
           />
         </Tabs.Tab>
       </Tabs>

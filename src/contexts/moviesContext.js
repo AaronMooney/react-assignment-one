@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import StubAPI from "../api/stubAPI";
-import { getMovies, getTrendingMovies } from "../api/tmdb-api";
+import { getMovies, getTrendingMovies, getUpcomingMovies } from "../api/tmdb-api";
 
 export const MoviesContext = React.createContext(null);
 
 const MoviesContextProvider = (props) => {
   const [movies, setMovies] = useState([]);
   const [trending, setTrending] = useState([0]);
+  const [upcoming, setUpcoming] = useState([1]);
 
   const addToFavorites = (movieId, type) => {
     if (type === "movies") {
@@ -33,6 +34,10 @@ const MoviesContextProvider = (props) => {
     getTrendingMovies().then((trending) => {
       setTrending(trending);
     });
+
+    getUpcomingMovies().then((upcoming) => {
+      setUpcoming(upcoming);
+    })
   }, []);
 
   return (
@@ -40,6 +45,7 @@ const MoviesContextProvider = (props) => {
       value={{
         movies: movies,
         trending: trending,
+        upcoming: upcoming,
         addToFavorites: addToFavorites,
       }}
     >

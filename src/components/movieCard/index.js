@@ -32,7 +32,7 @@ const Movie = ({movie, action}) => {
           </p>
         </div>
         <div className="card-footer">
-           {action(movie)}
+            {action(movie)}
         </div>
       </div>
     </div>

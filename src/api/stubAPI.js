@@ -14,7 +14,10 @@ class StubAPI {
     }
 
     addTvShowToFavorites(tvShow) {
-        this.favoriteTvShows.push(tvShow)
+        var existing = this.favoriteTvShows.filter(showId => showId = tvShow.id)
+        if (!existing.length > 0){
+            this.favoriteTvShows.push(tvShow)
+        }
     }
 
     getAllMovies() {

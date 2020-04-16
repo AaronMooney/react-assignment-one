@@ -1,23 +1,37 @@
 import React, { useState, useEffect } from "react";
 import StubAPI from "../api/stubAPI";
-import { getTvShows } from "../api/tmdb-api";
+import { getTvShows, getTrendingTvShows } from "../api/tmdb-api";
 
-export const TvShowsContext = React.createContext(null)
+export const TvShowsContext = React.createContext(null);
 
-const TvShowsContextProvider = props => {
+const TvShowsContextProvider = (props) => {
   const [tvShows, setTvShows] = useState([]);
+  const [trending, setTrending] = useState([0]);
 
-  const addToFavorites = tvShowId => {
-    setTvShows(tvShows => {
-      const index = tvShows.map(m => m.id).indexOf(tvShowId);
-      StubAPI.addTvShowToFavorites(tvShows[index]);
-      tvShows.splice(index, 1);
-      return [...tvShows];
-    });
+  const addToFavorites = (tvShowId, type) => {
+    if (type === "tv") {
+      setTvShows((tvShows) => {
+        const index = tvShows.map((m) => m.id).indexOf(tvShowId);
+        StubAPI.addTvShowToFavorites(tvShows[index]);
+        tvShows.splice(index, 1);
+        return [...tvShows];
+      });
+    } else if (type === "trending") {
+      setTrending((tvShows) => {
+        const index = tvShows.map((m) => m.id).indexOf(tvShowId);
+        StubAPI.addTvShowToFavorites(tvShows[index]);
+        tvShows.splice(index, 1);
+        return [...tvShows];
+      });
+    }
   };
   useEffect(() => {
-    getTvShows().then(tvShows => {
+    getTvShows().then((tvShows) => {
       setTvShows(tvShows);
+    });
+
+    getTrendingTvShows().then((trending) => {
+      setTrending(trending);
     });
   }, []);
 
@@ -25,7 +39,8 @@ const TvShowsContextProvider = props => {
     <TvShowsContext.Provider
       value={{
         tvShows: tvShows,
-        addToFavorites: addToFavorites
+        trending: trending,
+        addToFavorites: addToFavorites,
       }}
     >
       {props.children}
@@ -33,4 +48,4 @@ const TvShowsContextProvider = props => {
   );
 };
 
-export default TvShowsContextProvider
+export default TvShowsContextProvider;

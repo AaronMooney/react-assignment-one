@@ -6,7 +6,7 @@ const TvShowList = ({tvShows, action}) => {
   const tvShowCards = tvShows.map(m => (
     <TvShow key={m.id} tvShow={m} action={action} />
   ));
-  return <div className="row movies bg-info">{tvShowCards}</div>;
+  return <div className="row movies">{tvShowCards}</div>;
 };
 
 export default TvShowList;

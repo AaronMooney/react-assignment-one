@@ -8,7 +8,7 @@ const Person = ({person}) => {
 
   return (
     <div className="col-sm-3">
-      <div className="card  bg-white">
+      <div className="card">
       <Link to={`/people/${person.id}`}>
         <img
           className="card-img-tag center "

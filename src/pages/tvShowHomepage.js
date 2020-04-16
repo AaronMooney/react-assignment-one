@@ -2,11 +2,13 @@ import React, { useContext } from "react";
 import PageTemplate from "../components/templateTvShowListPage";
 import { TvShowsContext } from "../contexts/tvShowsContext";
 import TvShowAddToFavoritesButton from "../components/buttons/tvShowAddToFavorites";
-import { Tabs } from "@yazanaabed/react-tabs";
+import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
+import 'react-tabs/style/react-tabs.css';
 
 const tabStyles = {
   fontFamily: "sans-serif",
   textAlign: "center",
+  color:"white"
 };
 
 const TvShowListPage = () => {
@@ -14,27 +16,31 @@ const TvShowListPage = () => {
 
   return (
     <div style={tabStyles}>
-      <Tabs activeTab={{ id: "tab1" }}>
-        <Tabs.Tab id="tab1" title="Tv Shows">
-          <PageTemplate
+      <Tabs>
+        <TabList>
+          <Tab>Tv Shows</Tab>
+          <Tab>Trending</Tab>
+        </TabList>
+        <TabPanel>
+        <PageTemplate
             title="All Tv Shows"
             tvShows={context.tvShows}
             action={(tvShow) => (
               <TvShowAddToFavoritesButton tvShow={tvShow} type="tv" />
             )}
           />
-        </Tabs.Tab>
-        <Tabs.Tab id="tab2" title="Trending">
-          <PageTemplate
+        </TabPanel>
+        <TabPanel>
+        <PageTemplate
             title="Trending This Week"
             tvShows={context.trending}
             action={(tvShow) => (
               <TvShowAddToFavoritesButton tvShow={tvShow} type="trending" />
             )}
           />
-        </Tabs.Tab>
+        </TabPanel>
       </Tabs>
-    </div>
+      </div>
   );
 };
 

@@ -20,11 +20,12 @@ import GenresContextProvider from "./contexts/genresContext";
 import PeopleContextProvider from "./contexts/peopleContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import AddTvShowReviewPage from './pages/addTvShowReviewPage';
+import "../src/mainStyle.css";
 
 const App = () => {
   return (
     <BrowserRouter>
-    <div className="jumbotron">
+    <div className="jumbotron main">
       <SiteHeader/>
       <div className="container-fluid">
           <MoviesContextProvider>

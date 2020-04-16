@@ -6,7 +6,7 @@ const PeopleList = ({people}) => {
   const peopleCards = people.map(p => (
     <Person key={p.id} person={p} />
   ));
-  return <div className="row movies bg-info">{peopleCards}</div>;
+  return <div className="row movies">{peopleCards}</div>;
 };
 
 export default PeopleList;

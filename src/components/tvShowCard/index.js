@@ -8,7 +8,7 @@ const TvShow = ({tvShow, action}) => {
 
   return (
     <div className="col-sm-3">
-      <div className="card  bg-white">
+      <div className="card">
       <Link to={`/tvShows/${tvShow.id}`}>
         <img
           className="card-img-tag center "

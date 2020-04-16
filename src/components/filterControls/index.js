@@ -20,7 +20,7 @@ const FilterControls = props => {
 
   if (props.numMovies > 0){
   return (
-    <div className="row bg-warning">
+    <div className="row filterBar">
       <div className="col-md-12">
         <h4>
           {listFiltering}
@@ -40,7 +40,7 @@ const FilterControls = props => {
   );
   } else {
     return(
-      <div className="row bg-warning">
+      <div className="row filterBar">
         <div className="col-md-12">
           <h4>
             {listFiltering}

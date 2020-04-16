@@ -12,9 +12,14 @@ margin-bottom: 1px;
 
 .card-body {
 padding-top: 1px;
-padding-bottom: 1px;
+padding-bottom: 1px
 }
 
 .card-title {
 text-align: center
+}
+
+.card {
+  background-color: #E5F3FF;
+  color:black
 }

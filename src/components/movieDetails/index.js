@@ -1,5 +1,6 @@
 import React from "react";
 import "./movieDetails.css";
+import "../componentStyles/details.css"
 
 export default ({ movie }) => {
   return (
@@ -10,13 +11,13 @@ export default ({ movie }) => {
         <li key="ruh" className="list-group-item list-group-item-dark">
           Runtime (min.)
         </li>
-        <li key="rut" className="list-group-item ">
+        <li key="rut" className="list-group-item detailsText">
           {movie.runtime}
         </li>
         <li key="rdh" className="list-group-item list-group-item-dark">
           Release Date
         </li>
-        <li key="rdv" className="list-group-item ">
+        <li key="rdv" className="list-group-item detailsText">
           {movie.release_date}
         </li>
       </ul>
@@ -26,7 +27,7 @@ export default ({ movie }) => {
           Genres
         </li>
         {movie.genres.map(g => (
-          <li key={g.name} className="list-group-item">
+          <li key={g.name} className="list-group-item detailsText">
             {g.name}
           </li>
         ))}
@@ -36,7 +37,7 @@ export default ({ movie }) => {
           Spoken Languages
         </li>
         {movie.spoken_languages.map(lang => (
-          <li key={lang.name} className="list-group-item">
+          <li key={lang.name} className="list-group-item detailsText">
             {lang.name}
           </li>
         ))}
@@ -46,7 +47,7 @@ export default ({ movie }) => {
           Production Companies
         </li>
         {movie.production_companies.map(pc => (
-          <li key={pc.name} className="list-group-item">
+          <li key={pc.name} className="list-group-item detailsText">
             {pc.name}
           </li>
         ))}
@@ -56,7 +57,7 @@ export default ({ movie }) => {
           Production Countries
         </li>
         {movie.production_countries.map(pc => (
-          <li key={pc.name} className="list-group-item">
+          <li key={pc.name} className="list-group-item detailsText">
             {pc.name}
           </li>
         ))}

@@ -1,12 +1,15 @@
 import React from "react";
-import PageTemplate from '../components/templateMoviePage'
-import MovieReview from "../components/movieReview"
+import PageTemplate from "../components/templateMoviePage";
+import MovieReview from "../components/movieReview";
+import "../components/componentStyles/details.css";
 
 const MovieReviewPage = (props) => {
   return (
+    <div className="review">
       <PageTemplate movie={props.location.state.movie}>
-        <MovieReview review={props.location.state.review} /> 
+        <MovieReview review={props.location.state.review} />
       </PageTemplate>
+    </div>
   );
 };
 

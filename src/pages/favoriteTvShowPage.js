@@ -1,16 +1,18 @@
 import React from "react";
 import StubAPI from "../api/stubAPI";
 import PageTemplate from "../components/templateTvShowListPage";
-import AddReviewButton from '../components/buttons/addTvShowReview'
+import AddReviewButton from "../components/buttons/addTvShowReview";
+import "./homepage.css";
 
-const FavoriteMoviesPage = props => {
-
+const FavoriteMoviesPage = (props) => {
   return (
-    <PageTemplate
-      tvShows={StubAPI.getAllTvShows()}
-      title={"Favorite Tv Shows"}
-      action={tvShow => <AddReviewButton tvShow={tvShow} />}
-    />
+    <div className="page">
+      <PageTemplate
+        tvShows={StubAPI.getAllTvShows()}
+        title={"Favorite Tv Shows"}
+        action={(tvShow) => <AddReviewButton tvShow={tvShow} />}
+      />
+    </div>
   );
 };
 

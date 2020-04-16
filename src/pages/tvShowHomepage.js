@@ -4,18 +4,13 @@ import { TvShowsContext } from "../contexts/tvShowsContext";
 import TvShowAddToFavoritesButton from "../components/buttons/tvShowAddToFavorites";
 import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
-
-const tabStyles = {
-  fontFamily: "sans-serif",
-  textAlign: "center",
-  color:"white"
-};
+import './homepage.css'
 
 const TvShowListPage = () => {
   const context = useContext(TvShowsContext);
 
   return (
-    <div style={tabStyles}>
+    <div className="page">
       <Tabs>
         <TabList>
           <Tab>Tv Shows</Tab>

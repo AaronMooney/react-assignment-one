@@ -4,17 +4,12 @@ import { MoviesContext } from "../contexts/moviesContext";
 import MovieAddToFavoritesButton from "../components/buttons/movieAddToFavorites";
 import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
-
-const tabStyles = {
-  fontFamily: "sans-serif",
-  textAlign: "center",
-  color:"white"
-};
+import './homepage.css'
 
 const MovieListPage = () => {
   const context = useContext(MoviesContext);
   return (
-    <div style={tabStyles}>
+    <div className="page">
       <Tabs>
         <TabList>
           <Tab>Movies</Tab>

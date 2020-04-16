@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getMovieReviews } from "../../api/tmdb-api";
 import { excerpt } from "../../util";
-import StubAPI from "../../api/stubAPI"
+import StubAPI from "../../api/stubAPI";
+import "../componentStyles/details.css"
 
 export default ({ movie }) => {
   const [reviews, setReviews] = useState([]);
@@ -13,7 +14,7 @@ export default ({ movie }) => {
     });
   }, []);
   return (
-    <table className="table table-striped table-bordered table-hover">
+    <table className="table table-striped table-bordered review">
       <thead>
         <tr>
           <th scope="col">Author</th>

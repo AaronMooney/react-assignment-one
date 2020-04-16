@@ -1,10 +1,13 @@
 import React from "react";
+import "../componentStyles/details.css";
 
 export default ({ review }) => {
   return (
     <>
-      <p>Review By: {review.author} </p>
-      <p>{review.content} </p>
+      <div className="review">
+        <p>Review By: {review.author} </p>
+        <p>{review.content} </p>
+      </div>
     </>
   );
 };

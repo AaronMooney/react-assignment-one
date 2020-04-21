@@ -4,13 +4,13 @@ import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../globals/fontawesome";
 import "./siteHeader.css";
-import { Auth0Provider,Auth0Context } from "../../contexts/auth0-context"
+import { Auth0Context } from "../../contexts/auth0-context"
 
 const SiteHeader = () => {
 
-  const auth0 = useContext(Auth0Context);
+  const { isLoading, user, loginWithRedirect, logout } = useContext(Auth0Context);
+  
   return (
-    <Auth0Provider>
     <nav className="navbar  navbar-light fixed-top  bg-dark ">
       <nav className="navbar-brand text-white">
         <Link className=" text-white" to="/">
@@ -32,9 +32,16 @@ const SiteHeader = () => {
         icon={["fas", "video"]}
         size="3x"
       />
-      <span className="navbar-text text-light">
-        For the movie enthusiast !!
-      </span>
+      {!isLoading && !user && (
+        <span className="navbar-text text-light">
+          For the movie enthusiast !!
+        </span>
+      )}
+      {!isLoading && user && (
+        <span className="navbar-text text-light">
+          Welcome {user.name}
+        </span>
+      )}
       <FontAwesomeIcon
         className="navbar-text text-light"
         icon={["fas", "film"]}
@@ -58,12 +65,18 @@ const SiteHeader = () => {
             </Link>
           </li>
         </ul>
-        <button onClick={auth0.loginWithRedirect} className="btn btn-primary">
-          Login
-        </button>
       </nav>
+      {!isLoading && !user && (
+          <button onClick={loginWithRedirect} className="btn btn-primary">
+            Login
+          </button>
+        )}
+        {!isLoading && user && (
+          <button onClick={() => logout({ returnTo: window.location.origin })} className="btn btn-primary">
+            Logout
+          </button>
+        )}
     </nav>
-    </Auth0Provider>
   );
 };
 

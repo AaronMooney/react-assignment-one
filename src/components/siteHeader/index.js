@@ -8,7 +8,7 @@ import { Auth0Context } from "../../contexts/auth0-context"
 
 const SiteHeader = () => {
 
-  const { isLoading, user, loginWithRedirect, logout } = useContext(Auth0Context);
+  const { isLoading, user, loginWithRedirect, logout, isAuthenticated } = useContext(Auth0Context);
   
   return (
     <nav className="navbar  navbar-light fixed-top  bg-dark ">
@@ -32,15 +32,18 @@ const SiteHeader = () => {
         icon={["fas", "video"]}
         size="3x"
       />
-      {!isLoading && !user && (
+      {!isAuthenticated && (
         <span className="navbar-text text-light">
           For the movie enthusiast !!
         </span>
       )}
-      {!isLoading && user && (
+      {isAuthenticated && (
+        <>
         <span className="navbar-text text-light">
           Welcome {user.name}
         </span>
+        <Link className="nav-link text-white" to="/profile">Profile</Link>
+        </>
       )}
       <FontAwesomeIcon
         className="navbar-text text-light"
@@ -66,12 +69,12 @@ const SiteHeader = () => {
           </li>
         </ul>
       </nav>
-      {!isLoading && !user && (
+      {!isAuthenticated && (
           <button onClick={loginWithRedirect} className="btn btn-primary">
             Login
           </button>
         )}
-        {!isLoading && user && (
+        {isAuthenticated && (
           <button onClick={() => logout({ returnTo: window.location.origin })} className="btn btn-primary">
             Logout
           </button>

@@ -22,6 +22,9 @@ import AddMovieReviewPage from './pages/addMovieReviewPage';
 import AddTvShowReviewPage from './pages/addTvShowReviewPage';
 import "../src/mainStyle.css";
 import { Auth0Provider } from './contexts/auth0-context';
+import Profile from "./components/profile"
+import PrivateRoute from "./components/privateRoute";
+
 
 const App = () => {
 
@@ -47,6 +50,7 @@ const App = () => {
                 <Route path="/people/:id" component={PersonPage} />
                 <Route path="/tvShows" component={TvShowsHomePage} />
                 <Route path="/people" component={PeopleHomePage} />
+                <PrivateRoute path="/profile" component={Profile}/>
                 <Route path="/" component={HomePage} />
                 <Redirect from="*" to="/" />
               </Switch>

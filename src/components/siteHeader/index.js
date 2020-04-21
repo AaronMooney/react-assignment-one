@@ -1,12 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../globals/fontawesome";
 import "./siteHeader.css";
+import { Auth0Provider,Auth0Context } from "../../contexts/auth0-context"
 
 const SiteHeader = () => {
+
+  const auth0 = useContext(Auth0Context);
   return (
+    <Auth0Provider>
     <nav className="navbar  navbar-light fixed-top  bg-dark ">
       <nav className="navbar-brand text-white">
         <Link className=" text-white" to="/">
@@ -54,8 +58,12 @@ const SiteHeader = () => {
             </Link>
           </li>
         </ul>
+        <button onClick={auth0.loginWithRedirect} className="btn btn-primary">
+          Login
+        </button>
       </nav>
     </nav>
+    </Auth0Provider>
   );
 };
 

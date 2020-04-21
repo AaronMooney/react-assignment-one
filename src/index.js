@@ -21,9 +21,12 @@ import PeopleContextProvider from "./contexts/peopleContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import AddTvShowReviewPage from './pages/addTvShowReviewPage';
 import "../src/mainStyle.css";
+import { Auth0Provider } from './contexts/auth0-context';
 
 const App = () => {
+
   return (
+    <Auth0Provider>
     <BrowserRouter>
     <div className="jumbotron main">
       <SiteHeader/>
@@ -54,6 +57,7 @@ const App = () => {
         </div>
       </div>
   </BrowserRouter>
+  </Auth0Provider>
   );
 };
 

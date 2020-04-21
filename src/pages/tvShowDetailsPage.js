@@ -21,14 +21,16 @@ const TvShowPage = (props) => {
               <div className="col-12 ">
                 {!props.history.location.pathname.endsWith("/reviews") ? (
                   <Link
-                    className="btn btn-primary btn-block active"
+                    className="btn btn-block active"
+                    style={{backgroundColor:"#0174AD",color:"white"}}
                     to={`/tvShows/${id}/reviews`}
                   >
                     Show Reviews
                   </Link>
                 ) : (
                   <Link
-                    className="btn btn-primary btn-block active"
+                    className="btn btn-block active"
+                    style={{backgroundColor:"#0174AD",color:"white"}}
                     to={`/tvShows/${id}`}
                   >
                     Hide Reviews

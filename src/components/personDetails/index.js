@@ -1,6 +1,6 @@
 import React from "react";
 import "../movieDetails/movieDetails.css";
-import "../componentStyles/details.css"
+import "../componentStyles/styles.css";
 
 export default ({ person, credits }) => {
   return (
@@ -35,7 +35,6 @@ export default ({ person, credits }) => {
         </li>
         <div className="list-group-item list-unstyled">
           {credits?.cast.map(function(d,index){
-            console.log(d)
             return (<li key={index} className="detailsText" >{d.original_title != null ? d.original_title : d.original_name }</li>)
           })}
         </div>

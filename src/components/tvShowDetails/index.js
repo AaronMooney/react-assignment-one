@@ -1,6 +1,6 @@
 import React from "react";
 import "../movieDetails/movieDetails.css";
-import "../componentStyles/details.css";
+import "../componentStyles/styles.css"
 
 export default ({ tvShow }) => {
   return (

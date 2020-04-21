@@ -11,7 +11,7 @@ const Header = ({ title, numTvShows }) => {
       <div style={headerCss}>
         <h2>
           {title + " "}
-          <span className="badge badge-pill badge-success">{numTvShows}</span>
+          <span className="badge badge-pill" style={{backgroundColor:"#0174AD"}}>{numTvShows}</span>
         </h2>
       </div>
     </div>

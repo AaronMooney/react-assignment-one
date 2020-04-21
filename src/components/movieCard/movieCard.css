@@ -12,14 +12,40 @@ margin-bottom: 1px;
 
 .card-body {
 padding-top: 1px;
-padding-bottom: 1px
+padding-bottom: 1px;
+width: 100%;
+text-align: center;
 }
 
 .card-title {
-text-align: center
+text-align: center;
+font-weight: bold;
+display: inline-block; 
+margin: 0 auto;
+padding: 3px;
 }
 
 .card {
   background-color: #E5F3FF;
-  color:black
+  color:black;
+  height: 500px;
+}
+
+.personCard{
+  background-color: #E5F3FF;
+  color:black;
+  height: 425px;
+}
+
+.row .col-3 .movie {
+  width: 100%;
+  height: auto;
+}
+
+.cardImage {
+  display: block;
+  max-width:200px;
+  max-height:350px;
+  width: 100%;
+  height: auto;
 }

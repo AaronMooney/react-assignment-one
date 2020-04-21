@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getMovieReviews } from "../../api/tmdb-api";
 import { excerpt } from "../../util";
 import StubAPI from "../../api/stubAPI";
-import "../componentStyles/details.css"
+import "../componentStyles/styles.css";
 
 export default ({ movie }) => {
   const [reviews, setReviews] = useState([]);

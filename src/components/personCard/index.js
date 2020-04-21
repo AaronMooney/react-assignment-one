@@ -8,10 +8,10 @@ const Person = ({person}) => {
 
   return (
     <div className="col-sm-3">
-      <div className="card">
+      <div className="personCard">
       <Link to={`/people/${person.id}`}>
         <img
-          className="card-img-tag center "
+          className="card-img-tag center cardImage"
           alt={person.name}
           src={
             person.profile_path
@@ -21,7 +21,9 @@ const Person = ({person}) => {
         />
         </Link>
         <div className="card-body">
-          <h4 className="card-title ">{person.name}</h4>
+          <p className="card-title ">
+            {person.name}
+          </p>
           <p>
             <FontAwesomeIcon icon={["fas", "user"]} />
             <span> Known For: {person.known_for_department}</span>
@@ -32,6 +34,7 @@ const Person = ({person}) => {
           </p>
         </div>
       </div>
+      <br></br>
     </div>
   );
 };

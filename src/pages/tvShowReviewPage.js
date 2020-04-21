@@ -1,7 +1,7 @@
 import React from "react";
 import PageTemplate from "../components/templateTvShowPage";
 import TvShowReview from "../components/tvShowReview";
-import "../components/componentStyles/details.css";
+import "../components/componentStyles/styles.css";
 
 const TvShowReviewPage = (props) => {
   return (

@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 const TvShowReviewButton = ({ tvShow }) => {
   return (
     <Link
-      className="btn w-100 btn-primary "
+      className="btn w-100"
+      style={{backgroundColor:"#0174AD",color:"white"}}
       to={{
         pathname: `/tvShows/reviews/form`,
         state: {

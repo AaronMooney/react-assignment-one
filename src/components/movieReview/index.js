@@ -1,5 +1,5 @@
 import React from "react";
-import "../componentStyles/details.css";
+import "../componentStyles/styles.css";
 
 export default ({ review }) => {
   return (

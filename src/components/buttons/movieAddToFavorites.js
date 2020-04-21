@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import {MoviesContext} from "../../contexts/moviesContext";
+import "../componentStyles/styles.css"
 
 const MovieAddToFavoritesButton = ({ movie , type}) => {
   const context = useContext(MoviesContext);
@@ -11,7 +12,8 @@ const MovieAddToFavoritesButton = ({ movie , type}) => {
   return (
     <button
       type="button"
-      className="btn w-100 btn-primary"
+      className="btn w-100"
+      style={{backgroundColor:"#0174AD",color:"white"}}
       onClick={handleAddToFavorite}
     >
       Add to Favorites

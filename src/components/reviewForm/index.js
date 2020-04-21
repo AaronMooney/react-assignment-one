@@ -53,12 +53,13 @@ const ReviewForm = ({ movie, tvShow }) => {
         <p className="text-white">{errors.content.message} </p>
       )}
 
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn" style={{backgroundColor:"#0174AD",color:"white"}}>
         Submit
       </button>
       <button
         type="reset"
-        className="btn btn-primary reset"
+        className="btn reset"
+        style={{backgroundColor:"#0174AD",color:"white"}}
         onClick={() => {
           reset({
             author: "",

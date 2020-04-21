@@ -11,7 +11,8 @@ const TvShowsAddToFavoritesButton = ({ tvShow, type }) => {
   return (
     <button
       type="button"
-      className="btn w-100 btn-primary"
+      className="btn w-100"
+      style={{backgroundColor:"#0174AD",color:"white"}}
       onClick={handleAddToFavorite}
     >
       Add to Favorites

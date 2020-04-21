@@ -11,7 +11,7 @@ const TvShow = ({tvShow, action}) => {
       <div className="card">
       <Link to={`/tvShows/${tvShow.id}`}>
         <img
-          className="card-img-tag center "
+          className="card-img-tag center cardImage"
           alt={tvShow.name}
           src={
             tvShow.poster_path
@@ -21,7 +21,9 @@ const TvShow = ({tvShow, action}) => {
         />
         </Link>
         <div className="card-body">
-          <h4 className="card-title ">{tvShow.name}</h4>
+          <p className="card-title">
+            {tvShow.name}
+          </p>
           <p>
             <FontAwesomeIcon icon={["fas", "calendar"]} />
             <span> {tvShow.first_air_date}</span>
@@ -35,6 +37,7 @@ const TvShow = ({tvShow, action}) => {
             {action(tvShow)}
         </div>
       </div>
+      <br></br>
     </div>
   );
 };

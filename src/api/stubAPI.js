@@ -7,15 +7,13 @@ class StubAPI {
     }
 
     addMovieToFavorites(movie) {
-        var existing = this.favoriteMovies.filter(movieId => movieId = movie.id)
-        if (!existing.length > 0){
+        if (!this.favoriteMovies.filter(e => e.id === movie.id).length > 0){
             this.favoriteMovies.push(movie)
         }
     }
 
     addTvShowToFavorites(tvShow) {
-        var existing = this.favoriteTvShows.filter(showId => showId = tvShow.id)
-        if (!existing.length > 0){
+        if (!this.favoriteTvShows.filter(e => e.id === tvShow.id).length > 0){
             this.favoriteTvShows.push(tvShow)
         }
     }
@@ -54,6 +52,18 @@ class StubAPI {
             }
         });
         return customReviews
+    }
+
+    removeTvShowFromFavorites(tvShow){
+        this.favoriteTvShows = this.favoriteTvShows.filter(e =>  e !== tvShow)
+    }
+
+    tvShowExistsInFavorites(tvShow){
+        if (!this.favoriteTvShows.filter(e => e.id === tvShow.id).length > 0){
+            return true
+        } else {
+            return false
+        }
     }
 
 }

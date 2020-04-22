@@ -25,16 +25,16 @@ const TvShowsContextProvider = (props) => {
     }
   };
 
-  const removeFromFavorites = (tvShowId, type) => {
+  const removeFromFavorites = (tvShowId) => {
 
-      if (type === "tv") {
+
         setFavorites((favorites) => {
           const index = favorites.map((m) => m.id).indexOf(tvShowId);
           StubAPI.removeTvShowFromFavorites(favorites[index]);
           favorites.splice(index, 1);
           return [...favorites];
         });
-      }
+      
   };
 
   const isTvShowInFavorites = (tvShow) => {

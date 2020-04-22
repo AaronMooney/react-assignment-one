@@ -58,8 +58,20 @@ class StubAPI {
         this.favoriteTvShows = this.favoriteTvShows.filter(e =>  e !== tvShow)
     }
 
+    removeMovieFromFavorites(movie){
+        this.favoriteMovies = this.favoriteMovies.filter(e =>  e !== movie)
+    }
+
     tvShowExistsInFavorites(tvShow){
         if (!this.favoriteTvShows.filter(e => e.id === tvShow.id).length > 0){
+            return true
+        } else {
+            return false
+        }
+    }
+
+    movieExistsInFavorites(movie){
+        if (!this.favoriteMovies.filter(e => e.id === movie.id).length > 0){
             return true
         } else {
             return false

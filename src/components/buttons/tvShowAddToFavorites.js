@@ -5,7 +5,6 @@ const TvShowsAddToFavoritesButton = ({ tvShow, type }) => {
 
   const context = useContext(TvShowsContext);
   const [disabled, setDisabled] = useState(!context.isTvShowInFavorites(tvShow))
-  console.log(tvShow.name + " " +  disabled)
 
   const handleAddToFavorite = e => {
     setDisabled(!disabled)

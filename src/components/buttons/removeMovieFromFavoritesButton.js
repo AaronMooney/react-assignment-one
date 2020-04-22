@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import {TvShowsContext} from "../../contexts/tvShowsContext";
+import {MoviesContext} from "../../contexts/moviesContext";
 
-const TvShowsRemoveFromFavoritesButton = ({ tvShow }) => {
-  const context = useContext(TvShowsContext);
+
+const MovieRemoveFromFavoritesButton = ({ movie, action }) => {
+  const context = useContext(MoviesContext);
 
   const handleRemoveFromFavorite = e => {
     e.preventDefault();
-    context.removeFromFavorites(tvShow.id);
+    context.removeFromFavorites(movie.id);
   };
   return (
     <button
@@ -20,4 +21,4 @@ const TvShowsRemoveFromFavoritesButton = ({ tvShow }) => {
   );
 };
 
-export default TvShowsRemoveFromFavoritesButton;
+export default MovieRemoveFromFavoritesButton;

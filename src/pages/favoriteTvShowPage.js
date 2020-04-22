@@ -13,9 +13,8 @@ const FavoriteTvShowsPage = (props) => {
         title={"Favorite Tv Shows"}
         action={(tvShow) =>
           <>
-          {console.log(tvShow)}
           <AddReviewButton tvShow={tvShow} />
-          <RemoveFromFavoritesButton tvShow={tvShow} type="tv"/>
+          <RemoveFromFavoritesButton tvShow={tvShow}/>
           </>
         }
       />

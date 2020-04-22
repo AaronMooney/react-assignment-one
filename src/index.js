@@ -43,8 +43,8 @@ const App = () => {
                 <Route exact path="/tvShows/reviews/form" component={AddTvShowReviewPage} />
                 <Route path="/movies/reviews/:id" component={MovieReviewPage} />
                 <Route path="/tvShows/reviews/:id" component={TvShowReviewPage} />
-                <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
-                <Route exact path="/tvShows/favorites" component={FavoriteTvShowPage} />
+                <PrivateRoute exact path="/movies/favorites" component={FavoriteMoviesPage} />
+                <PrivateRoute exact path="/tvShows/favorites" component={FavoriteTvShowPage} />
                 <Route path="/movies/:id" component={MoviePage} />
                 <Route path="/tvShows/:id" component={TvShowPage} />
                 <Route path="/people/:id" component={PersonPage} />

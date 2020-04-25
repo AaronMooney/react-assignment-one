@@ -3,11 +3,19 @@ import "./reviewForm.css";
 import useForm from "react-hook-form";
 import stubAPI from "../../api/stubAPI";
 
-const ReviewForm = ({ movie }) => {
+const ReviewForm = ({ movie, tvShow }) => {
   const { register, handleSubmit, errors, reset } = useForm();
   const onSubmit = data => {
-    data.movieId = movie.id;
-    stubAPI.addReview(data);
+
+    if (movie){
+      data.movieId = movie.id;
+      stubAPI.addMovieReview(data);
+    }
+    if (tvShow){
+      data.tvShowId = tvShow.id
+      stubAPI.addTvShowReview(data);
+    }
+    
     console.log(data);
     reset({
       author: "",
@@ -45,12 +53,13 @@ const ReviewForm = ({ movie }) => {
         <p className="text-white">{errors.content.message} </p>
       )}
 
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn" style={{backgroundColor:"#0174AD",color:"white"}}>
         Submit
       </button>
       <button
         type="reset"
-        className="btn btn-primary reset"
+        className="btn reset"
+        style={{backgroundColor:"#0174AD",color:"white"}}
         onClick={() => {
           reset({
             author: "",

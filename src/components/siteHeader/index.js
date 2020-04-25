@@ -1,16 +1,30 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../globals/fontawesome";
 import "./siteHeader.css";
+import { Auth0Context } from "../../contexts/auth0-context"
 
 const SiteHeader = () => {
+
+  const { isLoading, user, loginWithRedirect, logout, isAuthenticated } = useContext(Auth0Context);
+  
   return (
     <nav className="navbar  navbar-light fixed-top  bg-dark ">
       <nav className="navbar-brand text-white">
         <Link className=" text-white" to="/">
-          TMDB Client
+          Movies
+        </Link>
+      </nav>
+      <nav className="navbar-brand text-white">
+        <Link className=" text-white" to="/tvShows">
+          Tv Shows
+        </Link>
+      </nav>
+      <nav className="navbar-brand text-white">
+        <Link className=" text-white" to="/people">
+          People
         </Link>
       </nav>
       <FontAwesomeIcon
@@ -18,9 +32,19 @@ const SiteHeader = () => {
         icon={["fas", "video"]}
         size="3x"
       />
-      <span className="navbar-text text-light">
-        For the movie enthusiast !!
-      </span>
+      {!isAuthenticated && (
+        <span className="navbar-text text-light">
+          For the movie enthusiast !!
+        </span>
+      )}
+      {isAuthenticated && (
+        <>
+        <span className="navbar-text text-light">
+          Welcome {user.name}
+        </span>
+        <Link className="nav-link text-white" to="/profile">Profile</Link>
+        </>
+      )}
       <FontAwesomeIcon
         className="navbar-text text-light"
         icon={["fas", "film"]}
@@ -35,11 +59,26 @@ const SiteHeader = () => {
           </li>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/movies/favorites">
-              Favorites
+              Favorite Movies
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/tvShows/favorites">
+              Favorite TV
             </Link>
           </li>
         </ul>
       </nav>
+      {!isAuthenticated && (
+          <button onClick={loginWithRedirect} className="btn btn-primary">
+            Login
+          </button>
+        )}
+        {isAuthenticated && (
+          <button onClick={() => logout({ returnTo: window.location.origin })} className="btn btn-primary">
+            Logout
+          </button>
+        )}
     </nav>
   );
 };

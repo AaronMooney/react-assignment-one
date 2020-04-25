@@ -8,3 +8,7 @@ span {
 input {
   margin-right: 100px;
 }
+
+.filterBar {
+  background-color: #0174AD;
+}

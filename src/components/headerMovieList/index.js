@@ -1,12 +1,17 @@
 import React from "react";
 
-const Header = ({ numMovies }) => {
+const headerCss = {
+  margin:"auto",
+  textAlign:"center"
+};
+
+const Header = ({ title, numMovies }) => {
   return (
     <div className="row">
-      <div className="col-md-6 offset-4">
+      <div style={headerCss}>
         <h2>
-          All Movies{" "}
-          <span className="badge badge-pill badge-success">{numMovies}</span>
+          {title + " "}
+          <span className="badge badge-pill" style={{backgroundColor:"#0174AD"}}>{numMovies}</span>
         </h2>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import StubAPI from "../api/stubAPI";
-import { getTvShows, getTrendingTvShows } from "../api/tmdb-api";
+import { getTvShows, getTrendingTvShows, addFavoriteTvShow, getFavoriteTvShows, removeFavoriteTvShow } from "../api/tmdb-api";
 
 export const TvShowsContext = React.createContext(null);
 
@@ -13,33 +13,41 @@ const TvShowsContextProvider = (props) => {
     if (type === "tv") {
       setTvShows((tvShows) => {
         const index = tvShows.map((m) => m.id).indexOf(tvShowId);
-        StubAPI.addTvShowToFavorites(tvShows[index]);
+        addFavoriteTvShow(tvShows[index], localStorage.getItem('username'));
+        favorites.push(tvShows[index])
         return [...tvShows];
       });
     } else if (type === "trending") {
       setTrending((tvShows) => {
         const index = tvShows.map((m) => m.id).indexOf(tvShowId);
-        StubAPI.addTvShowToFavorites(tvShows[index]);
+        addFavoriteTvShow(tvShows[index], localStorage.getItem('username'));
+        favorites.push(tvShows[index])
         return [...tvShows];
       });
     }
   };
 
   const removeFromFavorites = (tvShowId) => {
-
-
         setFavorites((favorites) => {
           const index = favorites.map((m) => m.id).indexOf(tvShowId);
-          StubAPI.removeTvShowFromFavorites(favorites[index]);
-          favorites.splice(index, 1);
+          removeFavoriteTvShow(localStorage.getItem('username'),tvShowId);
+        favorites.splice(index, 1);
           return [...favorites];
         });
       
   };
 
-  const isTvShowInFavorites = (tvShow) => {
-    return StubAPI.tvShowExistsInFavorites(tvShow);
+  const isTvShowInFavorites = (movie) => {
+    return movieExistsInFavorites(movie);
   }
+
+  function movieExistsInFavorites(movie) {
+    if (!favorites.filter(e => e.id === movie.id).length > 0){
+        return true
+    } else {
+        return false
+    }
+};
 
   useEffect(() => {
     getTvShows().then((tvShows) => {
@@ -51,7 +59,9 @@ const TvShowsContextProvider = (props) => {
     });
 
 
-    setFavorites(StubAPI.getAllTvShows());
+    getFavoriteTvShows(localStorage.getItem('username')).then(tvShows => {
+      setFavorites(tvShows);
+    });
 
 
   }, []);

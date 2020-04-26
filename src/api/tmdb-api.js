@@ -126,6 +126,7 @@ export const getTrendingTvShows = () => {
 };
 
 export const login = (username, password) => {
+  console.log(JSON.stringify({ username: username, password: password }))
   return fetch('/api/users', {
     headers: {
       'Accept': 'application/json',
@@ -173,6 +174,79 @@ export const addTvShowReview = (data) => {
         'Authorization': window.localStorage.getItem('token')
       },
       body: JSON.stringify({author, content})
+    }
+  ).then(res => res.json())
+}
+
+export const addFavoriteMovie = (movie, userId) => {
+  return fetch(
+    `/api/users/${userId}/favorites/movies`,{
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': window.localStorage.getItem('token')
+      },
+      body: JSON.stringify(movie)
+    }
+  ).then(res => res.json())
+}
+
+export const addFavoriteTvShow = (tvShow, userName) => {
+  return fetch(
+    `/api/users/${userName}/favorites/tv`,{
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': window.localStorage.getItem('token')
+      },
+      body: JSON.stringify(tvShow)
+    }
+  ).then(res => res.json())
+}
+
+export const getFavoriteMovies = (userName) => {
+  return fetch(
+    `/api/users/${userName}/favorites/movies`,{
+      headers: {
+        'Authorization': window.localStorage.getItem('token')
+      },
+    }
+  ).then(res => res.json())
+}
+
+export const getFavoriteTvShows = (userName) => {
+  return fetch(
+    `/api/users/${userName}/favorites/tv`,{
+      headers: {
+        'Authorization': window.localStorage.getItem('token')
+      },
+    }
+  ).then(res => res.json())
+}
+
+
+export const removeFavoriteMovie = (userName, id) => {
+  console.log("removing" + id)
+  return fetch(
+    `/api/users/${userName}/favorites/movies/${id}`,{
+      headers: {
+        'Authorization': window.localStorage.getItem('token')
+      },
+      method: 'DELETE',
+    }
+  ).then(res => res.json())
+}
+
+export const removeFavoriteTvShow = (userName, id) => {
+  console.log("removing" + id)
+  return fetch(
+    `/api/users/${userName}/favorites/tv/${id}`,{
+      headers: {
+        'Authorization': window.localStorage.getItem('token')
+      },
+      method: 'DELETE',
     }
   ).then(res => res.json())
 }

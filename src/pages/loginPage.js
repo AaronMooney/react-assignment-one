@@ -11,13 +11,16 @@ function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { setAuthToken } = useAuth();
+  const { setUsername } = useAuth();
   const context = useContext(MoviesContext);
 
   function userLogin() {
     api.login( userName, password)
     .then(result => {
       if (result.success) {
+        
         setAuthToken(result.token);
+        setUsername(userName);
         setLoggedIn(true);
       } else {
         setIsError(true);
@@ -27,6 +30,7 @@ function Login() {
       setIsError(true);
     });
   }
+  
 
   if (isLoggedIn) {
     context.setAuthenticated(true);

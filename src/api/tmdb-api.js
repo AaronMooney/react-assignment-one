@@ -1,6 +1,4 @@
 export const getMovies = () => {
-  console.log("getting")
-  console.log(window.localStorage.getItem('token'))
   return fetch(
     '/api/movies/',{headers: {
     'Authorization': window.localStorage.getItem('token')
@@ -79,28 +77,29 @@ export const getTvShowReviews = id => {
 
 export const getPopularPeople = () => {
   return fetch(
-    `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    `/api/person/popular`
   )
     .then(res => res.json())
     .then(json => json.results);
 }
 
 export const getPerson = id => {
-  console.log("getting person")
   return fetch(
-    `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    `/api/person/${id}`
   ).then(res => res.json());
 };
 
 export const getCredits = id => {
   return fetch(
-    `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    `/api/person/credits/${id}`
   ).then(res => res.json());
 };
 
 export const getTrendingMovies = () => {
   return fetch(
-    `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    `/api/movies/trending`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+    }}
   )
     .then(res => res.json())
     .then(json => json.results)
@@ -108,19 +107,23 @@ export const getTrendingMovies = () => {
 
 export const getUpcomingMovies = () => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  )
+    `/api/movies/upcoming`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    })
     .then(res => res.json())
     .then(json => json.results)
 }
 
 export const getTrendingTvShows = () => {
   return fetch(
-    `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  )
+    `/api/tvShows/trending`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    })
     .then(res => res.json())
-    .then(json => json.results)
-}
+    .then(json => json.results);
+};
 
 export const login = (username, password) => {
   return fetch('/api/users', {

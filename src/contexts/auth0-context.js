@@ -67,3 +67,5 @@ export class Auth0Provider extends Component {
       );
     }
   }
+
+  //TODO remove this

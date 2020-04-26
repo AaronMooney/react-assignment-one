@@ -5,16 +5,19 @@ export const GenresContext = createContext(null)
 
 const GenresContextProvider = props => {
     const [genres, setGenres] = useState([{ id: "0", name: "All" }]);
+    const [authenticated, setAuthenticated] = useState(false);
+
     useEffect(() => {
       getGenres().then(allGenres => {
         setGenres([genres[0], ...allGenres]);
       });
-    }, []);
+    }, [authenticated]);
 
     return (
         <GenresContext.Provider
           value={{
-            genres
+            genres,
+            setAuthenticated: setAuthenticated
           }}
         >
           {props.children}

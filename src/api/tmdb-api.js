@@ -1,54 +1,78 @@
 export const getMovies = () => {
+  console.log("getting")
+  console.log(window.localStorage.getItem('token'))
   return fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&page=1`
-  )
+    '/api/movies/',{headers: {
+    'Authorization': window.localStorage.getItem('token')
+    }
+  })
     .then(res => res.json())
-    .then(json => json.results);
+    .then(json => {return json.results;})
+    .catch(err => console.log(err));
 };
 
 export const getTvShows = () => {
   return fetch(
-    `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
-  )
+    `/api/tvShows/`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    })
     .then(res => res.json())
     .then(json => json.results);
 };
 
 export const getMovie = id => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    `/api/movies/${id}`,{headers: {
+      'Authorization': window.localStorage.getItem('token'),
+    }
+  }
   ).then(res => res.json());
 };
 
 export const getTvShow = id => {
-  console.log(id)
   return fetch(
-    `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  ).then(res => res.json());
+    `/api/tvShows/${id}`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    }).then(res => res.json());
 };
 
 export const getGenres = () => {
   return fetch(
-    "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
-      process.env.REACT_APP_TMDB_KEY +
-      "&language=en-US"
-  )
+    `/api/genres`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+    }
+  }
+)
     .then(res => res.json())
     .then(json => json.genres);
 };
 
 export const getMovieReviews = id => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  )
+    `/api/movies/${id}/reviews`,
+    {headers: {
+      'Authorization': window.localStorage.getItem('token'),
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }
+)
     .then(res => res.json())
     .then(json => json.results);
 };
 
 export const getTvShowReviews = id => {
   return fetch(
-    `https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  )
+    `/api/tvShows/${id}/reviews`,
+    {headers: {
+      'Authorization': window.localStorage.getItem('token'),
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }
+)
     .then(res => res.json())
     .then(json => json.results);
 };
@@ -96,4 +120,56 @@ export const getTrendingTvShows = () => {
   )
     .then(res => res.json())
     .then(json => json.results)
+}
+
+export const login = (username, password) => {
+  return fetch('/api/users', {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+      method: 'post',
+      body:  JSON.stringify({ username: username, password: password })
+    }).then(res => res.json())
+  };
+
+export const signup = (username, password) => {
+  return fetch('/api/users?action=register',{
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      body: JSON.stringify({username: username, password: password })
+    }).then(res => res.json())
+  };
+
+export const addMovieReview = (data) => {
+  const {movieId, author, content} = data
+  return fetch(
+    `/api/movies/${movieId}/reviews`,{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': window.localStorage.getItem('token')
+      },
+      body: JSON.stringify({author, content})
+    }
+  ).then(res => res.json())
+}
+
+export const addTvShowReview = (data) => {
+  const {tvShowId, author, content} = data
+  return fetch(
+    `/api/tvShows/${tvShowId}/reviews`,{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': window.localStorage.getItem('token')
+      },
+      body: JSON.stringify({author, content})
+    }
+  ).then(res => res.json())
 }

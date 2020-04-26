@@ -21,15 +21,18 @@ import PeopleContextProvider from "./contexts/peopleContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import AddTvShowReviewPage from './pages/addTvShowReviewPage';
 import "../src/mainStyle.css";
-import { Auth0Provider } from './contexts/auth0-context';
+// import { Auth0Provider } from './contexts/auth0-context';
 import Profile from "./components/profile"
-import PrivateRoute from "./components/privateRoute";
+// import PrivateRoute from "./components/privateRoute";
+import LoginPage from './pages/loginPage';
+import SignupPage from './pages/signupPage';
+import AuthContextProvider from './contexts/authContext'
 
 
 const App = () => {
 
   return (
-    <Auth0Provider>
+    <AuthContextProvider>
     <BrowserRouter>
     <div className="jumbotron main">
       <SiteHeader/>
@@ -39,18 +42,20 @@ const App = () => {
           <PeopleContextProvider>
           <GenresContextProvider>
               <Switch>
+              <Route exact path="/login" component={LoginPage} />
+                <Route path="/signup" component={SignupPage} /> />
                 <Route exact path="/movies/reviews/form" component={AddMovieReviewPage} />
                 <Route exact path="/tvShows/reviews/form" component={AddTvShowReviewPage} />
                 <Route path="/movies/reviews/:id" component={MovieReviewPage} />
                 <Route path="/tvShows/reviews/:id" component={TvShowReviewPage} />
-                <PrivateRoute exact path="/movies/favorites" component={FavoriteMoviesPage} />
-                <PrivateRoute exact path="/tvShows/favorites" component={FavoriteTvShowPage} />
+                <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
+                <Route exact path="/tvShows/favorites" component={FavoriteTvShowPage} />
                 <Route path="/movies/:id" component={MoviePage} />
                 <Route path="/tvShows/:id" component={TvShowPage} />
                 <Route path="/people/:id" component={PersonPage} />
                 <Route path="/tvShows" component={TvShowsHomePage} />
                 <Route path="/people" component={PeopleHomePage} />
-                <PrivateRoute path="/profile" component={Profile}/>
+                <Route path="/profile" component={Profile}/>
                 <Route path="/" component={HomePage} />
                 <Redirect from="*" to="/" />
               </Switch>
@@ -58,10 +63,11 @@ const App = () => {
             </PeopleContextProvider>
             </TvShowsContextProvider>
           </MoviesContextProvider>
+          
         </div>
       </div>
   </BrowserRouter>
-  </Auth0Provider>
+  </AuthContextProvider>
   );
 };
 

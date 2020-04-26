@@ -9,6 +9,7 @@ const MoviesContextProvider = (props) => {
   const [trending, setTrending] = useState([0]);
   const [upcoming, setUpcoming] = useState([1]);
   const [favorites, setFavorites] = useState([1]);
+  const [authenticated, setAuthenticated] = useState(false);
 
   const addToFavorites = (movieId, type) => {
     if (type === "movies") {
@@ -57,7 +58,7 @@ const MoviesContextProvider = (props) => {
     })
 
     setFavorites(StubAPI.getAllMovies());
-  }, []);
+  }, [authenticated]);
 
   return (
     <MoviesContext.Provider
@@ -69,6 +70,7 @@ const MoviesContextProvider = (props) => {
         favorites: favorites,
         removeFromFavorites: removeFromFavorites,
         isMovieInFavorites: isMovieInFavorites,
+        setAuthenticated: setAuthenticated
       }}
     >
       {props.children}

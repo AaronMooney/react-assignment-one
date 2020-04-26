@@ -5,10 +5,16 @@ import MovieAddToFavoritesButton from "../components/buttons/movieAddToFavorites
 import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 import './homepage.css'
+import { useAuth } from "../contexts/authContext";
+import { Redirect} from "react-router-dom";
 
 const MovieListPage = () => {
   const context = useContext(MoviesContext);
+  const { authToken } = useAuth();
+
   return (
+    <>{authToken?(
+      <>
     <div className="page">
       <Tabs>
         <TabList>
@@ -39,6 +45,9 @@ const MovieListPage = () => {
         </TabPanel>
       </Tabs>
       </div>
+      </>
+    ):(
+        <Redirect to="/login"    /> )}</>
   );
 };
 

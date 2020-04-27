@@ -8,9 +8,11 @@ const GenresContextProvider = props => {
     const [authenticated, setAuthenticated] = useState(false);
 
     useEffect(() => {
+      if (authenticated){
       getGenres().then(allGenres => {
         setGenres([genres[0], ...allGenres]);
       });
+    }
     }, [authenticated]);
 
     return (

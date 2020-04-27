@@ -6,17 +6,22 @@ export const PeopleContext = React.createContext(null)
 
 const PeopleContextProvider = props => {
   const [people, setPeople] = useState([]);
+  const [authenticated, setAuthenticated] = useState(false);
+
 
   useEffect(() => {
+    if (authenticated){
     getPopularPeople().then(people => {
       setPeople(people);
     });
-  }, []);
+  }
+  }, [authenticated]);
 
   return (
     <PeopleContext.Provider
       value={{
         people: people,
+        setAuthenticated: setAuthenticated
       }}
     >
       {props.children}

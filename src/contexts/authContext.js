@@ -7,6 +7,7 @@ const AuthContextProvider = props => {
   const existingUser = localStorage.getItem("username");
   const [authToken, setAuthToken] = useState(existingToken);
   const [username, setUsername] = useState(existingUser);
+  const [authenticated, setAuthenticated] = useState(false);
 
   const setToken = (data) => {
     localStorage.setItem("token", data);
@@ -18,13 +19,22 @@ const AuthContextProvider = props => {
     setUsername(data);
   }
 
+  const logout = () => {
+    setToken(undefined)
+    setUsername(undefined)
+    setAuthenticated(false)
+  }
+
   return (
       <AuthContext.Provider
         value={{
           authToken,
           setAuthToken: setToken,
           username,
-          setUsername: setName
+          setUsername: setName,
+          setAuthenticated: setAuthenticated,
+          authenticated: authenticated,
+          logout: logout,
         }}
       >
         {props.children}

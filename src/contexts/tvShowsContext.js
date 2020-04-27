@@ -8,6 +8,8 @@ const TvShowsContextProvider = (props) => {
   const [tvShows, setTvShows] = useState([]);
   const [trending, setTrending] = useState([0]);
   const [favorites, setFavorites] = useState([1]);
+  const [authenticated, setAuthenticated] = useState(false);
+
 
   const addToFavorites = (tvShowId, type) => {
     if (type === "tv") {
@@ -50,6 +52,7 @@ const TvShowsContextProvider = (props) => {
 };
 
   useEffect(() => {
+    if (authenticated){
     getTvShows().then((tvShows) => {
       setTvShows(tvShows);
     });
@@ -63,8 +66,8 @@ const TvShowsContextProvider = (props) => {
       setFavorites(tvShows);
     });
 
-
-  }, []);
+  }
+  }, [authenticated]);
 
   return (
     <TvShowsContext.Provider
@@ -74,7 +77,9 @@ const TvShowsContextProvider = (props) => {
         favorites: favorites,
         addToFavorites: addToFavorites,
         removeFromFavorites: removeFromFavorites,
-        isTvShowInFavorites: isTvShowInFavorites
+        isTvShowInFavorites: isTvShowInFavorites,
+        setAuthenticated: setAuthenticated,
+
       }}
     >
       {props.children}

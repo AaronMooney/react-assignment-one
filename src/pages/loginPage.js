@@ -4,15 +4,24 @@ import * as api from '../api/tmdb-api';
 import { Card,  Form, Input, Button, Error } from "../components/loginComponents";
 import { useAuth } from "../contexts/authContext";
 import {MoviesContext} from '../contexts/moviesContext'
+import {TvShowsContext} from '../contexts/tvShowsContext'
+import {GenresContext} from '../contexts/genresContext'
+import {PeopleContext} from '../contexts/peopleContext'
+
 
 function Login() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const { setAuthToken } = useAuth();
-  const { setUsername } = useAuth();
-  const context = useContext(MoviesContext);
+  const { setAuthToken, setUsername, setAuthenticated, setShowLogout } = useAuth();
+  // const { setUsername } = useAuth();
+  // const { setAuth } = useAuth();
+  const moviesContext = useContext(MoviesContext);
+  const tvShowsContext = useContext(TvShowsContext);
+  const genresContext = useContext(GenresContext);
+  const peopleContext = useContext(PeopleContext);
+
 
   function userLogin() {
     api.login( userName, password)
@@ -21,6 +30,7 @@ function Login() {
         
         setAuthToken(result.token);
         setUsername(userName);
+        setAuthenticated(true);
         setLoggedIn(true);
       } else {
         setIsError(true);
@@ -33,7 +43,10 @@ function Login() {
   
 
   if (isLoggedIn) {
-    context.setAuthenticated(true);
+    moviesContext.setAuthenticated(true);
+    tvShowsContext.setAuthenticated(true);
+    genresContext.setAuthenticated(true);
+    peopleContext.setAuthenticated(true);
     return <Redirect to="/" />;
   }
 

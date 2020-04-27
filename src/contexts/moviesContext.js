@@ -54,6 +54,7 @@ const MoviesContextProvider = (props) => {
 
 
   useEffect(() => {
+    if (authenticated){
     getMovies().then((movies) => {
       setMovies(movies);
     });
@@ -69,6 +70,7 @@ const MoviesContextProvider = (props) => {
     getFavoriteMovies(localStorage.getItem('username')).then(movies => {
       setFavorites(movies);
     });
+  }
   }, [authenticated]);
 
   return (

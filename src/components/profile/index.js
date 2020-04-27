@@ -1,20 +1,16 @@
-import React, { Fragment, useContext } from "react";
-// import { Auth0Context } from "../../contexts/auth0-context";
+import React, { useContext } from "react";
+import { AuthContext } from "../../contexts/authContext";
+import ChangePasswordForm from "../changePasswordForm";
 
 const Profile = () => {
-  // const { isLoading, user} = useContext(Auth0Context);
-
-  // if (isLoading || !user) {
-  //   return <div style={{color:"white"}}>Loading...</div>;
-  // }
+  const { username } = useContext(AuthContext);
 
   return (
-    <Fragment>
-      {/* <img src={user.picture} alt="Profile" />
+    <>
+      <h2 style={{color:"white"}}>{username}</h2>
+      <ChangePasswordForm name={username}/>
+    </>
 
-      <h2 style={{color:"white"}}>{user.name}</h2>
-      <p style={{color:"white"}}> {user.email}</p> */}
-    </Fragment>
   );
 };
 

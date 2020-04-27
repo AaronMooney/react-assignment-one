@@ -21,13 +21,11 @@ import PeopleContextProvider from "./contexts/peopleContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import AddTvShowReviewPage from './pages/addTvShowReviewPage';
 import "../src/mainStyle.css";
-// import { Auth0Provider } from './contexts/auth0-context';
 import Profile from "./components/profile"
 import PrivateRoute from "./components/privateRoute";
 import LoginPage from './pages/loginPage';
 import SignupPage from './pages/signupPage';
 import AuthContextProvider from './contexts/authContext'
-
 
 const App = () => {
 

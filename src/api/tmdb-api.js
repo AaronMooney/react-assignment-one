@@ -228,7 +228,6 @@ export const getFavoriteTvShows = (userName) => {
 
 
 export const removeFavoriteMovie = (userName, id) => {
-  console.log("removing" + id)
   return fetch(
     `/api/users/${userName}/favorites/movies/${id}`,{
       headers: {
@@ -240,7 +239,6 @@ export const removeFavoriteMovie = (userName, id) => {
 }
 
 export const removeFavoriteTvShow = (userName, id) => {
-  console.log("removing" + id)
   return fetch(
     `/api/users/${userName}/favorites/tv/${id}`,{
       headers: {
@@ -250,3 +248,15 @@ export const removeFavoriteTvShow = (userName, id) => {
     }
   ).then(res => res.json())
 }
+
+export const changePassword = (user, password) => {
+  return fetch(
+    `/api/users/${user.name}/password`,{
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'PUT',
+      body: JSON.stringify({username: user.name, password: password })
+    }).then(res => res.json())
+  };

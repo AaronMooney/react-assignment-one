@@ -13,6 +13,8 @@ import GenresContextProvider from "../src/contexts/genresContext";
 import { action } from "@storybook/addon-actions";
 import PersonCard from "../src/components/personCard";
 import PersonDetails from "../src/components/personDetails"
+import ChangePasswordForm from "../src/components/changePasswordForm";
+import ReviewForm from "../src/components/reviewForm";
 
 const sampleMovie = {
   adult: false,
@@ -304,4 +306,12 @@ storiesOf("Home Page/PersonCard", module)
 
   storiesOf("Person Details Page/PersonDetails", module).add("default", () => (
     <PersonDetails person={samplePerson2} credits={sampleCredits} />
+  ));
+
+  storiesOf("General/changePassword", module).add("default", () => (
+    <ChangePasswordForm/>
+  ));
+
+  storiesOf("Movie Details Page/reviewForm", module).add("default", () => (
+    <ReviewForm/>
   ));

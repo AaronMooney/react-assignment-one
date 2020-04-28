@@ -7,7 +7,7 @@ const Profile = () => {
 
   return (
     <>
-      <h2 style={{color:"white"}}>{username}</h2>
+      <h2 style={{color:"white", textAlign:"center"}}>{username}</h2>
       <ChangePasswordForm name={username}/>
     </>
 

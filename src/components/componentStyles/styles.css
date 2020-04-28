@@ -5,3 +5,8 @@
 .review {
   color:white
 }
+
+.scroll {
+  max-height: 600px;
+  overflow-y: scroll;
+}

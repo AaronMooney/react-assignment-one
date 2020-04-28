@@ -77,22 +77,30 @@ export const getTvShowReviews = id => {
 
 export const getPopularPeople = () => {
   return fetch(
-    `/api/person/popular`
-  )
+    `/api/person/popular`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    })
     .then(res => res.json())
     .then(json => json.results);
 }
 
 export const getPerson = id => {
   return fetch(
-    `/api/person/${id}`
-  ).then(res => res.json());
+    `/api/person/${id}`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    })
+  .then(res => res.json());
 };
 
 export const getCredits = id => {
   return fetch(
-    `/api/person/credits/${id}`
-  ).then(res => res.json());
+    `/api/person/credits/${id}`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    })
+  .then(res => res.json());
 };
 
 export const getTrendingMovies = () => {

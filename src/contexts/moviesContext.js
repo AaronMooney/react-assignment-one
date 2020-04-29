@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import StubAPI from "../api/stubAPI";
-import { getMovies, getTrendingMovies, getUpcomingMovies } from "../api/tmdb-api";
+import { getMovies, getTrendingMovies, getUpcomingMovies, addFavoriteMovie, getFavoriteMovies, removeFavoriteMovie } from "../api/tmdb-api";
 
 export const MoviesContext = React.createContext(null);
 
@@ -8,30 +8,32 @@ const MoviesContextProvider = (props) => {
   const [movies, setMovies] = useState([]);
   const [trending, setTrending] = useState([0]);
   const [upcoming, setUpcoming] = useState([1]);
-  const [favorites, setFavorites] = useState([1]);
+  const [favorites, setFavorites] = useState([2]);
+  const [authenticated, setAuthenticated] = useState(false);
 
   const addToFavorites = (movieId, type) => {
     if (type === "movies") {
       setMovies((movies) => {
         const index = movies.map((m) => m.id).indexOf(movieId);
-        StubAPI.addMovieToFavorites(movies[index]);
+        addFavoriteMovie(movies[index], localStorage.getItem('username'));
+        favorites.push(movies[index])
         return [...movies];
       });
     } else if (type === "trending") {
       setTrending((movies) => {
         const index = movies.map((m) => m.id).indexOf(movieId);
-        StubAPI.addMovieToFavorites(movies[index]);
+        addFavoriteMovie(movies[index], localStorage.getItem('username'));
+        favorites.push(movies[index])
         return [...movies];
       });
     }
   };
 
   const removeFromFavorites = (movieId) => {
-
-
+    console.log(movieId)
     setFavorites((favorites) => {
       const index = favorites.map((m) => m.id).indexOf(movieId);
-      StubAPI.removeTvShowFromFavorites(favorites[index]);
+      removeFavoriteMovie(localStorage.getItem('username'),movieId);
       favorites.splice(index, 1);
       return [...favorites];
     });
@@ -39,11 +41,20 @@ const MoviesContextProvider = (props) => {
   };
 
   const isMovieInFavorites = (movie) => {
-    return StubAPI.movieExistsInFavorites(movie);
+    return movieExistsInFavorites(movie);
   }
+
+  function movieExistsInFavorites(movie) {
+    if (!favorites.filter(e => e.id === movie.id).length > 0){
+        return true
+    } else {
+        return false
+    }
+};
 
 
   useEffect(() => {
+    if (authenticated){
     getMovies().then((movies) => {
       setMovies(movies);
     });
@@ -56,8 +67,11 @@ const MoviesContextProvider = (props) => {
       setUpcoming(upcoming);
     })
 
-    setFavorites(StubAPI.getAllMovies());
-  }, []);
+    getFavoriteMovies(localStorage.getItem('username')).then(movies => {
+      setFavorites(movies);
+    });
+  }
+  }, [authenticated]);
 
   return (
     <MoviesContext.Provider
@@ -69,6 +83,8 @@ const MoviesContextProvider = (props) => {
         favorites: favorites,
         removeFromFavorites: removeFromFavorites,
         isMovieInFavorites: isMovieInFavorites,
+        setAuthenticated: setAuthenticated,
+        // getFavorites: getFavorites
       }}
     >
       {props.children}

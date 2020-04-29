@@ -5,7 +5,7 @@ const MovieReviewButton = ({ movie }) => {
   return (
     <Link
       className="btn w-100"
-      style={{backgroundColor:"#0174AD",color:"white"}}
+      style={{backgroundColor:"#0174AD",color:"white",margin:"10px 0"}}
       to={{
         pathname: `/movies/reviews/form`,
         state: {

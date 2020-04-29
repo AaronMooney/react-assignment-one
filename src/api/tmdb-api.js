@@ -1,82 +1,113 @@
 export const getMovies = () => {
   return fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&page=1`
-  )
+    '/api/movies/',{headers: {
+    'Authorization': window.localStorage.getItem('token')
+    }
+  })
     .then(res => res.json())
-    .then(json => json.results);
+    .then(json => {return json.results;})
+    .catch(err => console.log(err));
 };
 
 export const getTvShows = () => {
   return fetch(
-    `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
-  )
+    `/api/tvShows/`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    })
     .then(res => res.json())
     .then(json => json.results);
 };
 
 export const getMovie = id => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    `/api/movies/${id}`,{headers: {
+      'Authorization': window.localStorage.getItem('token'),
+    }
+  }
   ).then(res => res.json());
 };
 
 export const getTvShow = id => {
-  console.log(id)
   return fetch(
-    `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  ).then(res => res.json());
+    `/api/tvShows/${id}`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    }).then(res => res.json());
 };
 
 export const getGenres = () => {
   return fetch(
-    "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
-      process.env.REACT_APP_TMDB_KEY +
-      "&language=en-US"
-  )
+    `/api/genres`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+    }
+  }
+)
     .then(res => res.json())
     .then(json => json.genres);
 };
 
 export const getMovieReviews = id => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  )
+    `/api/movies/${id}/reviews`,
+    {headers: {
+      'Authorization': window.localStorage.getItem('token'),
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }
+)
     .then(res => res.json())
     .then(json => json.results);
 };
 
 export const getTvShowReviews = id => {
   return fetch(
-    `https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  )
+    `/api/tvShows/${id}/reviews`,
+    {headers: {
+      'Authorization': window.localStorage.getItem('token'),
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }
+)
     .then(res => res.json())
     .then(json => json.results);
 };
 
 export const getPopularPeople = () => {
   return fetch(
-    `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  )
+    `/api/person/popular`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    })
     .then(res => res.json())
     .then(json => json.results);
 }
 
 export const getPerson = id => {
-  console.log("getting person")
   return fetch(
-    `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  ).then(res => res.json());
+    `/api/person/${id}`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    })
+  .then(res => res.json());
 };
 
 export const getCredits = id => {
   return fetch(
-    `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  ).then(res => res.json());
+    `/api/person/credits/${id}`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    })
+  .then(res => res.json());
 };
 
 export const getTrendingMovies = () => {
   return fetch(
-    `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    `/api/movies/trending`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+    }}
   )
     .then(res => res.json())
     .then(json => json.results)
@@ -84,16 +115,156 @@ export const getTrendingMovies = () => {
 
 export const getUpcomingMovies = () => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  )
+    `/api/movies/upcoming`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    })
     .then(res => res.json())
     .then(json => json.results)
 }
 
 export const getTrendingTvShows = () => {
   return fetch(
-    `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  )
+    `/api/tvShows/trending`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+      }
+    })
     .then(res => res.json())
-    .then(json => json.results)
+    .then(json => json.results);
+};
+
+export const login = (username, password) => {
+  console.log(JSON.stringify({ username: username, password: password }))
+  return fetch('/api/users', {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+      method: 'post',
+      body:  JSON.stringify({ username: username, password: password })
+    }).then(res => res.json())
+  };
+
+export const signup = (username, password) => {
+  return fetch('/api/users?action=register',{
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      body: JSON.stringify({username: username, password: password })
+    }).then(res => res.json())
+  };
+
+export const addMovieReview = (data) => {
+  const {movieId, author, content} = data
+  return fetch(
+    `/api/movies/${movieId}/reviews`,{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': window.localStorage.getItem('token')
+      },
+      body: JSON.stringify({author, content})
+    }
+  ).then(res => res.json())
 }
+
+export const addTvShowReview = (data) => {
+  const {tvShowId, author, content} = data
+  return fetch(
+    `/api/tvShows/${tvShowId}/reviews`,{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': window.localStorage.getItem('token')
+      },
+      body: JSON.stringify({author, content})
+    }
+  ).then(res => res.json())
+}
+
+export const addFavoriteMovie = (movie, userId) => {
+  return fetch(
+    `/api/users/${userId}/favorites/movies`,{
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': window.localStorage.getItem('token')
+      },
+      body: JSON.stringify(movie)
+    }
+  ).then(res => res.json())
+}
+
+export const addFavoriteTvShow = (tvShow, userName) => {
+  return fetch(
+    `/api/users/${userName}/favorites/tv`,{
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': window.localStorage.getItem('token')
+      },
+      body: JSON.stringify(tvShow)
+    }
+  ).then(res => res.json())
+}
+
+export const getFavoriteMovies = (userName) => {
+  return fetch(
+    `/api/users/${userName}/favorites/movies`,{
+      headers: {
+        'Authorization': window.localStorage.getItem('token')
+      },
+    }
+  ).then(res => res.json())
+}
+
+export const getFavoriteTvShows = (userName) => {
+  return fetch(
+    `/api/users/${userName}/favorites/tv`,{
+      headers: {
+        'Authorization': window.localStorage.getItem('token')
+      },
+    }
+  ).then(res => res.json())
+}
+
+
+export const removeFavoriteMovie = (userName, id) => {
+  return fetch(
+    `/api/users/${userName}/favorites/movies/${id}`,{
+      headers: {
+        'Authorization': window.localStorage.getItem('token')
+      },
+      method: 'DELETE',
+    }
+  ).then(res => res.json())
+}
+
+export const removeFavoriteTvShow = (userName, id) => {
+  return fetch(
+    `/api/users/${userName}/favorites/tv/${id}`,{
+      headers: {
+        'Authorization': window.localStorage.getItem('token')
+      },
+      method: 'DELETE',
+    }
+  ).then(res => res.json())
+}
+
+export const changePassword = (user, password) => {
+  return fetch(
+    `/api/users/${user.name}/password`,{
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'PUT',
+      body: JSON.stringify({username: user.name, password: password })
+    }).then(res => res.json())
+  };

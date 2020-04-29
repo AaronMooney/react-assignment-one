@@ -5,3 +5,29 @@
 .review {
   color:white
 }
+
+.scroll {
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.card {
+  margin-bottom: 15px;
+}
+
+.detailsItem {
+  text-align: left;
+}
+
+.detailsItem > h5 { 
+  display: inline-block;
+  font-weight: bold;  
+}
+.detailsItem span { 
+  margin-left: 20px; 
+}
+
+.bio {
+  text-align: justify;
+  margin-bottom: 10px;
+}

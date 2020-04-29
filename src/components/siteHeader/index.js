@@ -4,18 +4,26 @@ import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../globals/fontawesome";
 import "./siteHeader.css";
-import { Auth0Context } from "../../contexts/auth0-context"
+import { AuthContext } from "../../contexts/authContext"
 
 const SiteHeader = () => {
 
-  const { isLoading, user, loginWithRedirect, logout, isAuthenticated } = useContext(Auth0Context);
+  const { username, authenticated } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+
+  function handleClick(e){
+    e.preventDefault()
+    authContext.logout()
+  }
   
   return (
     <nav className="navbar  navbar-light fixed-top  bg-dark ">
-      <nav className="navbar-brand text-white">
-        <Link className=" text-white" to="/">
-          Movies
-        </Link>
+      { authenticated && username && (
+        <>
+        <nav className="navbar-brand text-white">
+          <Link className=" text-white" to="/">
+            Movies
+          </Link>
       </nav>
       <nav className="navbar-brand text-white">
         <Link className=" text-white" to="/tvShows">
@@ -32,53 +40,55 @@ const SiteHeader = () => {
         icon={["fas", "video"]}
         size="3x"
       />
-      {!isAuthenticated && (
+      </>
+      )}
+      {!authenticated && (
         <span className="navbar-text text-light">
           For the movie enthusiast !!
         </span>
       )}
-      {isAuthenticated && (
+      {authenticated && username && (
         <>
         <span className="navbar-text text-light">
-          Welcome {user.name}
+          Welcome {username}
         </span>
         <Link className="nav-link text-white" to="/profile">Profile</Link>
         </>
       )}
+      {/* <span className="navbar-text text-light">
+          For the movie enthusiast !!
+        </span> */}
       <FontAwesomeIcon
         className="navbar-text text-light"
         icon={["fas", "film"]}
         size="3x"
       />
-      <nav className="navbar navbar-expand ">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/">
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/movies/favorites">
-              Favorite Movies
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/tvShows/favorites">
-              Favorite TV
-            </Link>
-          </li>
-        </ul>
-      </nav>
-      {!isAuthenticated && (
-          <button onClick={loginWithRedirect} className="btn btn-primary">
-            Login
-          </button>
-        )}
-        {isAuthenticated && (
-          <button onClick={() => logout({ returnTo: window.location.origin })} className="btn btn-primary">
-            Logout
-          </button>
-        )}
+      { authenticated && username && (
+        <>
+        <nav className="navbar navbar-expand ">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link text-white" to="/">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link text-white" to="/movies/favorites">
+                Favorite Movies
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link text-white" to="/tvShows/favorites">
+                Favorite TV
+              </Link>
+            </li>
+          </ul>
+        </nav> 
+        <button onClick={handleClick} className="btn btn-primary">
+          Logout
+        </button>
+        </>
+      )}
     </nav>
   );
 };

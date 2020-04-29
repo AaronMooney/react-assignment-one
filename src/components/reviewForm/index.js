@@ -2,6 +2,7 @@ import React from "react";
 import "./reviewForm.css";
 import useForm from "react-hook-form";
 import stubAPI from "../../api/stubAPI";
+import { addMovieReview, addTvShowReview } from '../../api/tmdb-api'
 
 const ReviewForm = ({ movie, tvShow }) => {
   const { register, handleSubmit, errors, reset } = useForm();
@@ -9,11 +10,11 @@ const ReviewForm = ({ movie, tvShow }) => {
 
     if (movie){
       data.movieId = movie.id;
-      stubAPI.addMovieReview(data);
+      addMovieReview(data);
     }
     if (tvShow){
       data.tvShowId = tvShow.id
-      stubAPI.addTvShowReview(data);
+      addTvShowReview(data);
     }
     
     console.log(data);

@@ -33,7 +33,7 @@ You can start the application by running ```npm start```
 ### Additional TMDB Endpoints used
 
 | TMDB Endpoint| Description|
-| ---- |:--:| ---:|---:|------:|
+| ---- |:--:|
 | /trending/movie/week | Gets trending movies this week|
 | /trending/tv/week	   | Gets trending tv shows this week|
 | /movie/upcoming | Gets upcoming movies |

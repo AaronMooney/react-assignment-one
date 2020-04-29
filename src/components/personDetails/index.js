@@ -8,31 +8,32 @@ export default ({ person, credits }) => {
     <div class="container-fluid">
     <div class="row">
 		<div class="col-md-12">
-			<h4 class="text-center">
-        Overview
-			</h4>
 			<h3>
         Biography
 			</h3>
-			<p>
+			<p class="bio">
       { person.biography}			
       </p>
 		</div>
 	</div>
   <div class="row">
     <div class="col-md-12">
-      <h5>
+      <div class="detailsItem">
+      <h5 class="detailsLabel">
         Birthday
       </h5>
-      <p>
-        {person.birthday}
-      </p>
-      <h5>
+        <span class="detail">
+          {person.birthday}
+        </span>
+      </div>
+      <div class="detailsItem">
+      <h5 class="detailsLabel">
         Place of Birth
       </h5>
-      <p>
-      {person.place_of_birth}
-      </p>
+        <span class="detail">
+          {person.place_of_birth}
+        </span>
+      </div>
     </div>
   </div>
   <div class="row">

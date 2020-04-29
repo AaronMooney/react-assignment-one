@@ -4,69 +4,99 @@ import "../componentStyles/styles.css"
 
 export default ({ tvShow }) => {
   return (
-    <>
-      <h4>Overview</h4>
-      <p>{tvShow.overview}</p>
-      <ul className="list-group list-group-horizontal">
-        <li key="ruh" className="list-group-item list-group-item-dark">
-          Runtime (min.)
-        </li>
-        <li key="rut" className="list-group-item detailsText">
-          {tvShow.episode_run_time}
-        </li>
-        <li key="rdh" className="list-group-item list-group-item-dark">
-          Last Air Date
-        </li>
-        <li key="rdv" className="list-group-item detailsText">
-          {tvShow.last_air_date}
-        </li>
-      </ul>
-      <ul className="list-group list-group-horizontal">
-        <li key="noel" className="list-group-item list-group-item-dark">
+  <>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>
+            Overview
+          </h3>
+          <p class="bio">
+            {tvShow.overview}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="detailsItem">
+            <h5 class="detailsLabel">
+              Runtime (min.)
+            </h5>
+            <span class="detail">
+              {tvShow.episode_run_time}
+            </span>
+          </div>
+          <div class="detailsItem">
+          <h5 class="detailsLabel">
+            Last Air Date
+          </h5>
+          <span class="detail">
+            {tvShow.last_air_date}
+        </span>
+      </div>
+      <div class="detailsItem">
+          <h5 class="detailsLabel">
           Number of Episodes
-        </li>
-        <li key="noe" className="list-group-item detailsText">
-          {tvShow.number_of_episodes}
-        </li>
-      </ul>
-      <ul className="list-group list-group-horizontal">
-        <li key="nosl" className="list-group-item list-group-item-dark">
+          </h5>
+          <span class="detail">
+            {tvShow.number_of_episodes}
+        </span>
+      </div>
+      <div class="detailsItem">
+          <h5 class="detailsLabel">
           Number of Seasons
-        </li>
-        <li key="nos" className="list-group-item detailsText">
-          {tvShow.number_of_seasons}
-        </li>
-      </ul>
-      <ul className="list-group list-group-horizontal">
-        <li key="gh" className="list-group-item list-group-item-dark">
-          Genres
-        </li>
-        {tvShow.genres.map(g => (
-          <li key={g.name} className="list-group-item detailsText">
-            {g.name}
-          </li>
-        ))}
-      </ul>
-      <ul className="list-group list-group-horizontal">
-        <li key="pch" className="list-group-item list-group-item-dark">
+          </h5>
+          <span class="detail">
+            {tvShow.number_of_seasons}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+		<div class="col-md-3">
+			<div class="card scroll">
+				<h5 class="card-header">
+					Genres
+				</h5>
+				<div class="card-body">
+					<p class="card-text">
+          {tvShow.genres?.map(function(d,index){
+            return (<p key={index} class="detailsText" >{d.name}</p>)
+          })}
+					</p>
+				</div>
+			</div>
+		</div>
+    <div class="col-md-4">
+			<div class="card scroll">
+				<h5 class="card-header">
           Production Companies
-        </li>
-        {tvShow.production_companies.map(pc => (
-          <li key={pc.name} className="list-group-item detailsText">
-            {pc.name}
-          </li>
-        ))}
-      </ul>
-      <ul className="list-group list-group-horizontal">
-        <li key="nw" className="list-group-item list-group-item-dark">
+				</h5>
+				<div class="card-body">
+					<p class="card-text">
+          {tvShow.production_companies?.map(function(c){
+            return (<p key={c.name} className="detailsText" >{c.name}</p>)
+          })}
+					</p>
+				</div>
+      </div>
+    </div>
+    <div class="col-md-4">
+			<div class="card scroll">
+				<h5 class="card-header">
           Networks
-        </li>
-        {tvShow.networks.map(n => (
-          <li key={n.name} className="list-group-item detailsText">
-            {n.name}
-          </li>
-        ))}
-      </ul>
-    </>
+				</h5>
+				<div class="card-body">
+					<p class="card-text">
+          {tvShow.networks?.map(function(c){
+            return (<p key={c.name} className="detailsText" >{c.name}</p>)
+          })}
+					</p>
+				</div>
+      </div>
+    </div>
+  </div>
+</div>
+</>
   );
 };

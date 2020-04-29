@@ -9,6 +9,8 @@ const AuthContextProvider = props => {
   const [username, setUsername] = useState(existingUser);
   const [authenticated, setAuthenticated] = useState(false);
 
+  
+
   const setToken = (data) => {
     localStorage.setItem("token", data);
     setAuthToken(data);
